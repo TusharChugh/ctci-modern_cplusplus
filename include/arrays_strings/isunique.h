@@ -6,7 +6,6 @@
  * @author Tushar Chugh
  */
 
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -19,7 +18,7 @@ constexpr uint8_t NUM_CHAR = 128;
  * @return true if unique
  * @return false if not unique
  */
-bool isUnique_hash( const std::string input ) {
+bool isUnique_hash( const std::string& input ) {
     if ( input.length() > 128 ) return false;
 
     // Note: vector<bool> takes less than 8 bytes to store a value
