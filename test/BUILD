@@ -18,7 +18,7 @@ PER_SRC_TEST_ARGS = ({
 cc_test(
 name = "algorithms-test",
 size = "small",
-srcs = glob(["*test.cpp"]),
+srcs = glob(["tests/**/*.cpp"]),
 copts = TEST_COPTS,
 
     deps = [
