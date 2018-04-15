@@ -32,11 +32,12 @@ bool isUnique_hash( const std::string& input ) {
 
 /**
  * Notes:
- * 1. Running time is O(n)
- * 2. Input is constant as we are not modifying it
- * 3. Prefer .at() function for string as opposed to [] operatir
+ * 1. Run time complexity is O(n)
+ * 2. Memory complexity is O(1) (approx 128/8 bytes)
+ * 3. Input is constant as we are not modifying it
+ * 4. Prefer .at() function for string as opposed to [] operatir
  * because .at checks whether pos is the valid position of a character in the string
- * 4. vector<bool> will try to pack the input as bits rather than bytes
- * 5. Use for_each loop with auto makes the code more robuts and clear
+ * 5. vector<bool> will try to pack the input as bits rather than bytes
+ * 6. Use for_each loop with auto makes the code more robuts and clear
  *
  */

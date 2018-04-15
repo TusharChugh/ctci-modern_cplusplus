@@ -19,17 +19,33 @@ TEST( CHECK_PERMUTATION, ALREADY_SORTED ) {
 }
 
 TEST( CHECK_PERMUTATION, SIMPLE_PERMUTATION_MAP ) {
-    ASSERT_TRUE( check_permutation_count( "abc", "bac" ) );
+    ASSERT_TRUE( check_permutation_map( "abc", "bac" ) );
 }
 
 TEST( CHECK_PERMUTATION, SIMPLE_NOT_PERMUTATION_MAP ) {
-    ASSERT_FALSE( check_permutation_count( "abc", "bad" ) );
+    ASSERT_FALSE( check_permutation_map( "abc", "bad" ) );
 }
 
 TEST( CHECK_PERMUTATION, UNEQUAL_LENGTH_MAP ) {
-    ASSERT_FALSE( check_permutation_count( "abc", "abcd" ) );
+    ASSERT_FALSE( check_permutation_map( "abc", "abcd" ) );
 }
 
 TEST( CHECK_PERMUTATION, ALREADY_SORTED_MAP ) {
-    ASSERT_TRUE( check_permutation_count( "abcd", "abcd" ) );
+    ASSERT_TRUE( check_permutation_map( "abcd", "abcd" ) );
+}
+
+TEST( CHECK_PERMUTATION, SIMPLE_PERMUTATION_ARRAY ) {
+    ASSERT_TRUE( check_permutation_arraycount( "abc", "bac" ) );
+}
+
+TEST( CHECK_PERMUTATION, SIMPLE_NOT_PERMUTATION_ARRAY ) {
+    ASSERT_FALSE( check_permutation_arraycount( "abc", "bad" ) );
+}
+
+TEST( CHECK_PERMUTATION, UNEQUAL_LENGTH_ARRAY ) {
+    ASSERT_FALSE( check_permutation_arraycount( "abc", "abcd" ) );
+}
+
+TEST( CHECK_PERMUTATION, ALREADY_SORTED_ARRAY ) {
+    ASSERT_TRUE( check_permutation_arraycount( "abcd", "abcd" ) );
 }
