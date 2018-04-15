@@ -10,6 +10,8 @@
  * @author Tushar Chugh
  */
 
+#pragma once
+
 #include <iostream>
 #include <string>
 

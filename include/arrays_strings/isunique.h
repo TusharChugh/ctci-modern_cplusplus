@@ -6,6 +6,8 @@
  * @author Tushar Chugh
  */
 
+#pragma once
+
 #include <string>
 #include <vector>
 

@@ -6,6 +6,8 @@
  * @author Tushar Chugh
  */
 
+#pragma once
+
 #include <algorithm>
 #include <string>
 #include <unordered_map>
