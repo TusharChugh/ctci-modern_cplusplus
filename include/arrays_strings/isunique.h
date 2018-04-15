@@ -11,7 +11,9 @@
 #include <string>
 #include <vector>
 
-constexpr uint8_t NUM_CHAR = 128;
+namespace algorithm {
+
+constexpr size_t NUM_CHAR = 256;
 
 /**
  * @brief detemine if a string has all unique characters
@@ -21,9 +23,9 @@ constexpr uint8_t NUM_CHAR = 128;
  * @return false if not unique
  */
 bool isUnique_hash( const std::string& input ) {
-    if ( input.length() > 128 ) return false;
+    if ( input.length() > NUM_CHAR ) return false;
 
-    // Note: vector<bool> takes less than 8 bytes to store a value
+    // Note: vector<bool> doesn't take a byte to store a value
     std::vector<bool> seen_chars( NUM_CHAR );
     for ( auto letter : input ) {
         if ( seen_chars.at( letter ) ) return false;
@@ -43,3 +45,5 @@ bool isUnique_hash( const std::string& input ) {
  * 6. Use for_each loop with auto makes the code more robuts and clear
  *
  */
+
+} // namespace algorithm

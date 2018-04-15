@@ -16,6 +16,8 @@
 #include <array>
 #include <string>
 
+namespace algorithm {
+
 constexpr size_t NUM_ALPHABETS = 26;
 
 /**
@@ -57,3 +59,4 @@ bool is_palindrom_permutation( const std::string& input ) {
     }
     return true;
 }
+} // namespace algorithm

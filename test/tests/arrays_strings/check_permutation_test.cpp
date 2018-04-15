@@ -2,6 +2,10 @@
 #include <gtest/gtest.h>
 #include <string>
 
+using algorithm::check_permutation_arraycount;
+using algorithm::check_permutation_map;
+using algorithm::check_permutation_sort;
+
 TEST( CHECK_PERMUTATION, SIMPLE_PERMUTATION ) {
     ASSERT_TRUE( check_permutation_sort( "abc", "bac" ) );
 }

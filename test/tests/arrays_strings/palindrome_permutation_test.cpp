@@ -2,6 +2,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
+using algorithm::is_palindrom_permutation;
+
 TEST( PALINDROME_PERMUTATION, EMPTY_STRING ) {
     ASSERT_TRUE( is_palindrom_permutation( "" ) );
 }

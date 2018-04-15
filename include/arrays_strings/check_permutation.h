@@ -12,6 +12,8 @@
 #include <string>
 #include <unordered_map>
 
+namespace algorithm {
+
 constexpr uint8_t NUM_CHAR = 128;
 
 // Let length of input be N and length of other be M
@@ -106,3 +108,4 @@ bool check_permutation_arraycount( const std::string& input, const std::string& 
     // Check if both the maps are equal
     return ( input_counts == other_counts );
 }
+} // namespace algorithm

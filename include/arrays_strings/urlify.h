@@ -15,6 +15,8 @@
 #include <iostream>
 #include <string>
 
+namespace algorithm {
+
 /**
  * @brief replace all spaces in a string with '%20
  * Notes:
@@ -66,3 +68,4 @@ void urlify_iterators( std::string& url, size_t url_length ) noexcept {
         }
     }
 }
+} // namespace algorithm

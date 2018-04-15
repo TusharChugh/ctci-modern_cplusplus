@@ -2,6 +2,9 @@
 #include <gtest/gtest.h>
 #include <string>
 
+using algorithm::urlify;
+using algorithm::urlify_iterators;
+
 TEST( URLIFY, ONE_SPACE ) {
     std::string input  = "test test  ";
     std::string output = "test%20test";

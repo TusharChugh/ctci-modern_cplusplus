@@ -2,6 +2,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
+using algorithm::isUnique_hash;
+
 TEST( IS_UNIQUE, HASH_NO_DUPLICATES ) {
     ASSERT_TRUE( isUnique_hash( "abcd" ) );
 }
