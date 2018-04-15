@@ -16,3 +16,5 @@ The build is based on Bazel offered by Google. It also uses Gtest for implementi
 
 ## Todo's:
 1. Add log tools like google logs
+2. Add gsl (guideline support library)
+3. Add CI (travis) and code coverage
