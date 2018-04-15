@@ -5,7 +5,12 @@ In addition, this contains test cases and benchmarking to evaluate the correctin
 
 The build is based on Bazel offered by Google. It also uses Gtest for implementing test cases and google benchmarks for benchmarking running time. 
 
-## Build 
+## Project structure
+source code -> src/  
+test -> tests/test/
+benchmark -> benchmark/
+
+## Build Code (Inclduing gtest and google benchmark)
 1. [Install bazel](https://docs.bazel.build/versions/master/install.html)
 2. Clone this repository and enter the repo directory
 3. Build the code: ```bazel build ...```
@@ -13,6 +18,9 @@ The build is based on Bazel offered by Google. It also uses Gtest for implementi
 ## Run
 1. Run test cases:  bazel run test:algorithms-test
 2. Run benchmarks:  bazel run test:algorithms-benchmark
+
+## Add new files/test
+1. Do add new solution. Create a new 'example.h' file in the appropriate directory inside the include folder. Add corresponding test in test/'appropriate'/ directory. Do the same for benchmark
 
 ## Todo's:
 1. Add log tools like google logs
