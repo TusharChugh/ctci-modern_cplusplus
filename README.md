@@ -11,15 +11,15 @@ algorithms-practice
     ├──include
     │  └── arrays_strings
     │      ├── BUILD
-    │      ├── example.h
+    │      └── example.h
     │
     ├──tests
     │  ├── test
     │  │   └── arrays_strings
-    │  │       ├── example_test.cpp
+    │  │       └── example_test.cpp
     │  ├── benchmark
     │  │   └── arrays_strings
-    │  │       ├── example_benchmark.cpp
+    │  │       └── example_benchmark.cpp
     │  └── BUILD
     ├──third_party
     │  ├── gtest.BUILD
