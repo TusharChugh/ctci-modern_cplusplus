@@ -42,7 +42,7 @@ uint8_t char_to_number( const char input ) {
  * @return true if the string is a permutation of palindrome
  * @return false  if the string is not a permutation of palindrome
  */
-bool is_palindrom_permutation( const std::string& input ) {
+bool is_palindrome_permutation( const std::string& input ) {
     // Build frequency table for the the charachters
     std::array<size_t, NUM_ALPHABETS> frequencies{};
 
