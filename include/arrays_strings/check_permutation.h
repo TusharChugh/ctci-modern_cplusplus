@@ -14,7 +14,7 @@
 
 namespace algorithm {
 
-constexpr uint8_t NUM_CHAR = 256;
+constexpr size_t NUM_CHAR = 256;
 
 // Let length of input be N and length of other be M
 
