@@ -1,6 +1,6 @@
 # Use new trusty images, should yield newer compilers and packages
 sudo: required
-dist: precise
+dist: trusty
 language: cpp
 
 env:
@@ -31,6 +31,7 @@ before_install:
   - sudo apt-get update -qq
   - export CMAKE_OPTIONS=${CMAKE_OPTIONS}" "${ENV_CMAKE_OPTIONS}
   - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
+  - sudo apt-get install libc6
 
 install:
     - sudo pip install codecov
@@ -45,7 +46,6 @@ install:
     - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6  
     - gcc --version
     - cmake --version
-    - sudo apt-get install libc6
     - ldd --version
 
     #Install Bazel
