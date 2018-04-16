@@ -1,4 +1,6 @@
-# Algrotihms and Data structure
+# Algorithms and Data structure
+
+[![Build Status](https://travis-ci.org/TusharChugh/ctci-modern_cplusplus.svg?branch=master)](https://travis-ci.org/TusharChugh/ctci-modern_cplusplus) 
 
 This repository contains the solutions to cracking the coding interview/LeetCode in C++. Most of the solutions available on other repositories are mostly follow C style coding. This repo attempts to follow modern C++ guidelines.
 In addition, this contains test cases and benchmarking to evaluate the correcting and the running time of the algorithms. 
