@@ -51,8 +51,7 @@ install:
     #Install Bazel
     #JVM
     - wget https://github.com/bazelbuild/bazel/releases/download/0.12.0/bazel_0.12.0-linux-x86_64.deb
-    - sha256sum -c tools/bazel_0.12.0-linux-x86_64.deb.sha256
-    - sudo dpkg -i bazel_0.12.0-linux-x86_64.deb
+    - sudo apt-get install ./bazel_0.12.0-linux-x86_64.deb
 
 script:
   - bazel build --cxxopt='-std=c++14' ...
