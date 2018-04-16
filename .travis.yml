@@ -25,7 +25,6 @@ matrix:
             - g++-6
             - valgrind
             - lcov
-            - libc6
       env: COMPILER=g++-6
 
 before_install:
@@ -46,6 +45,7 @@ install:
     - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6  
     - gcc --version
     - cmake --version
+    - sudo apt-get install libc6
     - ldd --version
 
     #Install Bazel
