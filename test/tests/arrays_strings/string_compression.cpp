@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
-using algorithm::compress;
+// using algorithm::compress;
 
-TEST( STRING_COMPRESSION, EMPTY_STRING ) {
-    ASSERT_EQ( "aabcccccaaa", compress( "aabcccccaaa" ) );
-}
+// TEST( STRING_COMPRESSION, EMPTY_STRING ) {
+//     ASSERT_EQ( "aabcccccaaa", compress( "aabcccccaaa" ) );
+// }
