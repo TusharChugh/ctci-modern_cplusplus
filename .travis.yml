@@ -57,7 +57,7 @@ install:
     - sudo apt-get update && sudo apt-get install bazel
 
 script:
-  - bazel build ...
+  - bazel build --cxxopt='-std=c++14' ...
   - bazel run test:algorithms-test
 
 #after_success:
