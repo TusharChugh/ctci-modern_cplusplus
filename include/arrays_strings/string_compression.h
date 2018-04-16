@@ -36,25 +36,25 @@ size_t count_compressed( const std::string& input ) {
     return compressed_size;
 }
 
-std::string compress( const std::string& input ) {
-    size_t compressed_size = count_compressed( input );
-    std::cout << compressed_size;
-    if ( compressed_size >= input.length() ) return input;
-    std::string compressed_str( compressed_size, ' ' );
+// std::string compress( const std::string& input ) {
+//     size_t compressed_size = count_compressed( input );
+//     std::cout << compressed_size;
+//     if ( compressed_size >= input.length() ) return input;
+//     std::string compressed_str( compressed_size, ' ' );
 
-    size_t consecutive_count = 0;
-    auto compressed_str_iter = compressed_str.begin();
-    for ( auto iter = input.begin(); iter != input.end(); ++iter ) {
-        ++consecutive_count;
-        if ( ( iter + 1 ) == input.end() || ( *iter != *( iter + 1 ) ) ) {
-            *compressed_str_iter = *iter;
-            ++compressed_str_iter;
+//     size_t consecutive_count = 0;
+//     auto compressed_str_iter = compressed_str.begin();
+//     for ( auto iter = input.begin(); iter != input.end(); ++iter ) {
+//         ++consecutive_count;
+//         if ( ( iter + 1 ) == input.end() || ( *iter != *( iter + 1 ) ) ) {
+//             *compressed_str_iter = *iter;
+//             ++compressed_str_iter;
 
-            *compressed_str_iter = std::to_string( consecutive_count );
-            ++compressed_str_iter;
-        }
-    }
+//             *compressed_str_iter = std::to_string( consecutive_count );
+//             ++compressed_str_iter;
+//         }
+//     }
 
-    return compressed_str;
-}
+//     return compressed_str;
+// }
 } // namespace algorithm
