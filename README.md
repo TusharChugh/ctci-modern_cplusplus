@@ -44,4 +44,4 @@ algorithms-practice
 ## Todo's:
 1. Add log tools like google logs
 2. Add gsl (guideline support library)
-3. Add CI (travis) and code coverage
+3. Add code coverage

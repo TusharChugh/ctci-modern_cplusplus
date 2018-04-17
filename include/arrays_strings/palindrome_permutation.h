@@ -26,7 +26,7 @@ constexpr size_t NUM_ALPHABETS = 26;
  * @param input character
  * @return int interger from 0
  */
-uint8_t char_to_number( const char input ) {
+size_t char_to_number( const char input ) {
     if ( ( input - 'a' >= 0 ) && ( input - 'z' <= 0 ) ) {
         return input - 'a';
     }

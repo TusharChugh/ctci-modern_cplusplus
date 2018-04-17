@@ -11,17 +11,16 @@
 
 #pragma once
 
-#include <iostream>
 #include <string>
 
 namespace algorithm {
-// size_t num_digits( size_t num ) {
-//     size_t digits = 1;
-//     while ( num / 10 )
-//         ++digits;
-//     return digits;
-// }
 
+/**
+ * @brief Given a string, count the length of the of string which it can be compressed to
+ *
+ * @param input input string
+ * @return size_t length of the compressed string
+ */
 size_t count_compressed( const std::string& input ) {
     size_t compressed_size   = 0;
     size_t consecutive_count = 0;
@@ -36,25 +35,34 @@ size_t count_compressed( const std::string& input ) {
     return compressed_size;
 }
 
-// std::string compress( const std::string& input ) {
-//     size_t compressed_size = count_compressed( input );
-//     std::cout << compressed_size;
-//     if ( compressed_size >= input.length() ) return input;
-//     std::string compressed_str( compressed_size, ' ' );
+/**
+ * @brief compress the string using the count of repeated characters
+ * Notes:
+ * 1. Run time complexity: O(N)
+ * 2. Memory complexity: O(N)
+ * 3. Use of iterators here is a bit ugly
+ * @param input
+ * @return std::string
+ */
+std::string compress( const std::string& input ) {
+    size_t compressed_size = count_compressed( input );
+    if ( compressed_size >= input.length() ) return input;
+    std::string compressed_str( compressed_size, ' ' );
 
-//     size_t consecutive_count = 0;
-//     auto compressed_str_iter = compressed_str.begin();
-//     for ( auto iter = input.begin(); iter != input.end(); ++iter ) {
-//         ++consecutive_count;
-//         if ( ( iter + 1 ) == input.end() || ( *iter != *( iter + 1 ) ) ) {
-//             *compressed_str_iter = *iter;
-//             ++compressed_str_iter;
+    size_t consecutive_count = 0;
+    auto compressed_str_iter = compressed_str.begin();
+    for ( auto iter = input.begin(); iter != input.end(); ++iter ) {
+        ++consecutive_count;
+        if ( ( iter + 1 ) == input.end() || ( *iter != *( iter + 1 ) ) ) {
+            *compressed_str_iter = *iter;
+            ++compressed_str_iter;
+            auto count_str = std::to_string( consecutive_count );
+            std::copy( count_str.begin(), count_str.end(), compressed_str_iter );
+            compressed_str_iter += count_str.length();
+            consecutive_count = 0;
+        }
+    }
 
-//             *compressed_str_iter = std::to_string( consecutive_count );
-//             ++compressed_str_iter;
-//         }
-//     }
-
-//     return compressed_str;
-// }
+    return compressed_str;
+}
 } // namespace algorithm
