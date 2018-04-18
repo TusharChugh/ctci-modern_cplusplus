@@ -27,3 +27,7 @@ TEST( STRING_ROTATION, EQUAL_STRING ) {
 TEST( STRING_ROTATION, ROTATED_STRING ) {
     ASSERT_TRUE( is_rotation( "waterbottle", "erbottlewat" ) );
 }
+
+TEST( STRING_ROTATION, NOT_ROTATED_STRING ) {
+    ASSERT_FALSE( is_rotation( "waterbattle", "waterbottle" ) );
+}

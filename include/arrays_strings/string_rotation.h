@@ -19,7 +19,7 @@ bool is_substring( const std::string& input, const std::string& sub ) noexcept {
 bool is_rotation( const std::string& s1, const std::string& s2 ) {
     if ( ( s1.length() != s2.length() ) || s1.empty() ) return false;
 
-    std::string concatenated = s1 + s2;
+    std::string concatenated = s1 + s1;
     return is_substring( concatenated, s2 );
 }
 } // namespace algorithm
