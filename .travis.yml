@@ -49,7 +49,6 @@ install:
     - ldd --version
 
     #Install Bazel
-    #JVM
     - wget https://github.com/bazelbuild/bazel/releases/download/0.12.0/bazel_0.12.0-linux-x86_64.deb
     - sudo apt-get install ./bazel_0.12.0-linux-x86_64.deb
     - export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
