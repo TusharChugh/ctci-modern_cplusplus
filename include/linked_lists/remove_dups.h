@@ -11,8 +11,6 @@
 #include <unordered_set>
 #include "forward_list.h"
 
-#include <iostream>
-
 namespace algorithm {
 template<class T> void remove_duplicates_map( Forward_List<T>& input ) {
     auto head = input.begin();
@@ -20,11 +18,10 @@ template<class T> void remove_duplicates_map( Forward_List<T>& input ) {
 
     std::unordered_set<T> seen_elements;
 
-    while ( head->next_ != nullptr ) {
-        std::cout << head->value_ << " ";
+    while ( head != nullptr && head->next_ != nullptr ) {
         seen_elements.insert( head->value_ );
-        if ( seen_elements.find( head->next_->value_ ) == seen_elements.end() ) {
-            head->next_ = head->next_->next_;
+        if ( seen_elements.find( head->next_->value_ ) != seen_elements.end() ) {
+            head->next_ = (head->next_)->next_;
         }
         head = head->next_;
     }
