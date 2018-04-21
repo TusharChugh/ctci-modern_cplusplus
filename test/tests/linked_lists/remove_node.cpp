@@ -1,8 +1,9 @@
-#include "include/linked_lists/remove_dups.h"
+#include "include/linked_lists/remove_node.h"
 #include <gtest/gtest.h>
 
+
 using algorithm::Forward_List;
-using algorithm::remove_duplicates_map;
+using algorithm::remove_node;
 
 template<class T> void print_list( Forward_List<T>& input ) {
     auto head = input.front();
@@ -13,12 +14,8 @@ template<class T> void print_list( Forward_List<T>& input ) {
     std::cout << std::endl;
 }
 
-TEST( REMOVE_DUPS, EMPTY_LIST ) {
-    Forward_List<int> list;
-
-    remove_duplicates_map( list );
-
-    ASSERT_EQ( 0, list.size() );
+TEST( REMOVE_DUPS, NULLPTR_NODE ) {
+    ASSERT_EQ(nullptr, remove_node(nullptr) );
 }
 
 TEST( REMOVE_DUPS, ONE_ELEMENT ) {
@@ -26,36 +23,19 @@ TEST( REMOVE_DUPS, ONE_ELEMENT ) {
     Forward_List<int> list;
     list.push_front( input );
 
-    remove_duplicates_map( list );
+    remove_node( list.front() );
 
     ASSERT_EQ( input, list.front()->value_ );
 }
 
-TEST( REMOVE_DUPS, ONE_DUPLICATE ) {
+TEST( REMOVE_DUPS, REMOVE_MIDDLE ) {
     std::array<int, 5> input{1, 2, 2, 3, 4};
     Forward_List<int> list;
     for ( auto& num : input ) {
         list.push_front( num );
     }
 
-    remove_duplicates_map( list );
-
-    std::vector<int> output = {4, 3, 2, 1};
-    auto head               = list.front();
-    for ( size_t i = 0; i < output.size(); ++i ) {
-        ASSERT_EQ( output[i], head->value_ );
-        head = head->next_;
-    }
-}
-
-TEST( REMOVE_DUPS, END_DUPLICATE ) {
-    std::array<int, 5> input{1, 1, 2, 3, 4};
-    Forward_List<int> list;
-    for ( auto& num : input ) {
-        list.push_front( num );
-    }
-
-    remove_duplicates_map( list );
+    remove_node( list.front()->next_->next_ );
 
     std::vector<int> output = {4, 3, 2, 1};
     auto head               = list.front();
