@@ -13,7 +13,7 @@
 
 namespace algorithm {
 template<class T> void remove_duplicates_map( Forward_List<T>& input ) {
-    auto head = input.begin();
+    auto head = input.front();
     if ( head == nullptr ) return;
 
     std::unordered_set<T> seen_elements;
@@ -21,7 +21,7 @@ template<class T> void remove_duplicates_map( Forward_List<T>& input ) {
     while ( head != nullptr && head->next_ != nullptr ) {
         seen_elements.insert( head->value_ );
         if ( seen_elements.find( head->next_->value_ ) != seen_elements.end() ) {
-            head->next_ = (head->next_)->next_;
+            head->next_ = ( head->next_ )->next_;
         }
         head = head->next_;
     }

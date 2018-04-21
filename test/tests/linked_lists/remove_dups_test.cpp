@@ -7,7 +7,7 @@ using algorithm::Forward_List;
 using algorithm::remove_duplicates_map;
 
 template<class T> void print_list( Forward_List<T>& input ) {
-    auto head = input.begin();
+    auto head = input.front();
     while ( head ) {
         std::cout << head->value_ << " ";
         head = head->next_;
@@ -20,7 +20,7 @@ TEST( REMOVE_DUPS, EMPTY_LIST ) {
 
     remove_duplicates_map( list );
 
-    ASSERT_EQ(0, list.size());
+    ASSERT_EQ( 0, list.size() );
 }
 
 TEST( REMOVE_DUPS, ONE_ELEMENT ) {
@@ -30,7 +30,7 @@ TEST( REMOVE_DUPS, ONE_ELEMENT ) {
 
     remove_duplicates_map( list );
 
-    ASSERT_EQ(input, list.begin()->value_);
+    ASSERT_EQ( input, list.front()->value_ );
 }
 
 TEST( REMOVE_DUPS, ONE_DUPLICATE ) {
@@ -43,7 +43,7 @@ TEST( REMOVE_DUPS, ONE_DUPLICATE ) {
     remove_duplicates_map( list );
 
     std::vector<int> output = {4, 3, 2, 1};
-    auto head               = list.begin();
+    auto head               = list.front();
     for ( size_t i = 0; i < output.size(); ++i ) {
         ASSERT_EQ( output[i], head->value_ );
         head = head->next_;
@@ -60,7 +60,7 @@ TEST( REMOVE_DUPS, END_DUPLICATE ) {
     remove_duplicates_map( list );
 
     std::vector<int> output = {4, 3, 2, 1};
-    auto head               = list.begin();
+    auto head               = list.front();
     for ( size_t i = 0; i < output.size(); ++i ) {
         ASSERT_EQ( output[i], head->value_ );
         head = head->next_;

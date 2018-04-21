@@ -40,7 +40,7 @@ public:
         return size_;
     }
 
-    node_pointer begin() {
+    node_pointer front() {
         return head_;
     }
 };

@@ -36,9 +36,9 @@ TEST( FORWARD_LIST, BEGIN_ELEMENTS ) {
     Forward_List list;
     auto first = list.push_front( a );
     ASSERT_EQ( 1, list.size() );
-    ASSERT_EQ( 5, list.begin()->value_ );
+    ASSERT_EQ( 5, list.front()->value_ );
 
     auto second = list.push_front( b );
     ASSERT_EQ( 2, list.size() );
-    ASSERT_EQ( 6, list.begin()->value_ );
+    ASSERT_EQ( 6, list.front()->value_ );
 }
