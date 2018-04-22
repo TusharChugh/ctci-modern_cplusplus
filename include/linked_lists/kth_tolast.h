@@ -13,8 +13,7 @@
 namespace algorithm {
 
 template<class T>
-std::shared_ptr<typename Forward_List<T>::Forward_List_Node>
-    kth_tolast_runner( Forward_List<T>& input, size_t k ) {
+std::shared_ptr<Forward_List_Node<T>> kth_tolast_runner( Forward_List<T>& input, size_t k ) {
     auto runner1 = input.front();
     auto runner2 = input.front();
 
