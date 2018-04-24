@@ -30,8 +30,9 @@ partition_stable( std::shared_ptr<Forward_List_Node<T>> node, const T& key ) {
 
     while ( node != nullptr ) {
         auto next = node->next_;
+        node->next_ = nullptr;
         if ( node->value_ < key ) {
-            if(before_head != nullptr) {
+            if(before_head == nullptr) {
                 before_head = node;
                 before_end = node;
             }
@@ -41,7 +42,7 @@ partition_stable( std::shared_ptr<Forward_List_Node<T>> node, const T& key ) {
             }
         }
         else {
-            if(after_end != nullptr) {
+            if(after_end == nullptr) {
                 after_head = node;
                 after_end = node;
             }

@@ -14,6 +14,15 @@ template<class T> void print_list( Forward_List<T>& input ) {
     std::cout << std::endl;
 }
 
+
+void print_list( node_pointer_int head ) {
+    while ( head ) {
+        std::cout << head->value_ << " ";
+        head = head->next_;
+    }
+    std::cout << std::endl;
+}
+
 TEST( PARTITION_LIST, EMPTY_LIST ) {
     Forward_List<int> list;
 
@@ -32,7 +41,7 @@ TEST( PARTITION_LIST, EMPTY_LIST ) {
 //    ASSERT_EQ( input, list.front()->value_ );
 //}
 
-TEST( PARTITION_LIST, ONE_DUPLICATE ) {
+TEST( PARTITION_LIST, SEVEN_ELEMENTS ) {
     std::array<int, 7> input{3, 5, 8, 5, 10, 2, 1};
     Forward_List<int> list;
     for ( auto& num : input ) {
@@ -40,8 +49,8 @@ TEST( PARTITION_LIST, ONE_DUPLICATE ) {
     }
 
     node_pointer_int result= partition_stable( list.front(), 5 );
-
-    std::vector<int> output = {3, 2, 1, 5, 8, 5, 10};
+    print_list(result);
+    std::array<int, 7> output = {1, 2, 3, 10, 5, 8, 5};
     auto head               = result;
     for ( size_t i = 0; i < output.size(); ++i ) {
         ASSERT_EQ( output[i], head->value_ );
