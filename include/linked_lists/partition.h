@@ -16,21 +16,45 @@
 
 #pragma once
 
-#include <forward_list.h>
+#include "forward_list.h"
 
 namespace algorithm {
-template<typename T> Forward_List<T> partition_stable( Forward_List<T>& input, const T& key ) {
-    Forward_List partioned;
-    auto node       = input.front();
-    auto before_end = nullptr;
-    auto after_end  = nullptr;
+
+template<typename T> std::shared_ptr<Forward_List_Node<T>>
+partition_stable( std::shared_ptr<Forward_List_Node<T>> node, const T& key ) {
+    using node_pointer = std::shared_ptr<Forward_List_Node<T>>;
+    node_pointer before_head = nullptr;
+    node_pointer before_end = nullptr;
+    node_pointer after_head = nullptr;
+    node_pointer after_end  = nullptr;
 
     while ( node != nullptr ) {
+        auto next = node->next_;
         if ( node->value_ < key ) {
-            // partition.push_back(node_va)
+            if(before_head != nullptr) {
+                before_head = node;
+                before_end = node;
+            }
+            else {
+                before_end->next_ = node;
+                before_end = node;
+            }
         }
+        else {
+            if(after_end != nullptr) {
+                after_head = node;
+                after_end = node;
+            }
+            else {
+                after_end->next_ = node;
+                after_end = node;
+            }
+        }
+        node = next;
     }
 
-    return partitioned;
+    if(before_end == nullptr) return after_head;
+    before_end->next_ = after_head;
+    return before_head;
 }
 } // namespace algorithm

@@ -21,6 +21,8 @@ template<class T> struct Forward_List_Node {
     ~Forward_List_Node() = default;
 };
 
+
+
 template<class T> class Forward_List {
 public:
     using node_pointer = typename std::shared_ptr<Forward_List_Node<T>>;
