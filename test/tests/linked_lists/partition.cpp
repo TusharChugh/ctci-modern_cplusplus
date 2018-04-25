@@ -49,7 +49,6 @@ TEST( PARTITION_LIST, SEVEN_ELEMENTS ) {
     }
 
     node_pointer_int result= partition_stable( list.front(), 5 );
-    print_list(result);
     std::array<int, 7> output = {1, 2, 3, 10, 5, 8, 5};
     auto head               = result;
     for ( size_t i = 0; i < output.size(); ++i ) {

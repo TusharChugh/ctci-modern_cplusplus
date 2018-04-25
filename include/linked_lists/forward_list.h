@@ -12,16 +12,14 @@
 namespace algorithm {
 
 template<class T> struct Forward_List_Node {
-    T& value_;
-    std::shared_ptr<Forward_List_Node> next_ = nullptr;
+    T value_;
+    std::shared_ptr<Forward_List_Node> next_;
 
     // constructor
-    Forward_List_Node( T& value ) : value_( value ) {}
+    Forward_List_Node( T value ) : value_( value ), next_( nullptr ) {}
     // Destructor
     ~Forward_List_Node() = default;
 };
-
-
 
 template<class T> class Forward_List {
 public:
@@ -33,7 +31,7 @@ private:
 
 public:
     Forward_List() : head_( nullptr ), size_( 0 ) {}
-    node_pointer push_front( T& value ) {
+    node_pointer push_front( T value ) {
         auto node   = std::make_shared<Forward_List_Node<T>>( value );
         node->next_ = head_;
         head_       = node;

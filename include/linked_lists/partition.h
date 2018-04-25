@@ -20,41 +20,39 @@
 
 namespace algorithm {
 
-template<typename T> std::shared_ptr<Forward_List_Node<T>>
-partition_stable( std::shared_ptr<Forward_List_Node<T>> node, const T& key ) {
-    using node_pointer = std::shared_ptr<Forward_List_Node<T>>;
+template<typename T>
+std::shared_ptr<Forward_List_Node<T>> partition_stable( std::shared_ptr<Forward_List_Node<T>> node,
+                                                        const T& key ) {
+    using node_pointer       = std::shared_ptr<Forward_List_Node<T>>;
     node_pointer before_head = nullptr;
-    node_pointer before_end = nullptr;
-    node_pointer after_head = nullptr;
-    node_pointer after_end  = nullptr;
+    node_pointer before_end  = nullptr;
+    node_pointer after_head  = nullptr;
+    node_pointer after_end   = nullptr;
 
     while ( node != nullptr ) {
-        auto next = node->next_;
+        auto next   = node->next_;
         node->next_ = nullptr;
         if ( node->value_ < key ) {
-            if(before_head == nullptr) {
+            if ( before_head == nullptr ) {
                 before_head = node;
-                before_end = node;
-            }
-            else {
+                before_end  = node;
+            } else {
                 before_end->next_ = node;
-                before_end = node;
+                before_end        = node;
             }
-        }
-        else {
-            if(after_end == nullptr) {
+        } else {
+            if ( after_end == nullptr ) {
                 after_head = node;
-                after_end = node;
-            }
-            else {
+                after_end  = node;
+            } else {
                 after_end->next_ = node;
-                after_end = node;
+                after_end        = node;
             }
         }
         node = next;
     }
 
-    if(before_end == nullptr) return after_head;
+    if ( before_end == nullptr ) return after_head;
     before_end->next_ = after_head;
     return before_head;
 }
