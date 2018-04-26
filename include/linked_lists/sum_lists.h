@@ -6,7 +6,7 @@
  * EXAMPLE Input: (7-> 1 -> 6) + (5 -> 9 -> 2).Thatis,617 + 295.
  * Output:  2 -> 1 -? 9. That is, 912.
  *
- * FOLLOW UP Suppose the  * digits are stored in forward order. Repeat the above problem.
+ * FOLLOW UP Suppose the digits are stored in forward order. Repeat the above problem.
  * EXAMPLE Input: (6 -> 1 -> 7) + (2 -> 9 -> 5).Thatis,617 + 295.
  * Output: 9 -> 1 -> 2. That is, 912.
  *
@@ -45,5 +45,7 @@ int_node_pointer sum_lists( int_node_pointer head1, int_node_pointer head2 ) {
     }
     return result_head;
 }
+
+// ToDo: add recussive solution and a case if digits are stored in forward order
 
 } // namespace algorithm
