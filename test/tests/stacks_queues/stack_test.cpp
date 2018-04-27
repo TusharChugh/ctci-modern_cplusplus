@@ -23,7 +23,7 @@ TEST(STACK_TEST, THREE_ELEMENTS) {
     ASSERT_EQ(5, input.top());
 
     input.pop();
-    
+
     ASSERT_EQ(0, input.size());
     ASSERT_TRUE(input.empty());
 }

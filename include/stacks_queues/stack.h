@@ -17,13 +17,11 @@ namespace algorithm {
         //Constructors
         explicit stack( const Container& cont ) : container(cont) {}
 
-        explicit stack( Container&& cont = Container() ) : container(cont) { }
+        explicit stack( Container&& cont = Container() ) : container(std::move(cont)) {}
 
-        stack( const stack& other );
+        stack( const stack& other ) : container(other.container) {}
 
-        stack( stack&& other ) {
-
-        }
+        stack( stack&& other ) : container(std::move(other.container)) {}
 
         /**
          * Destructs the container adaptor.
@@ -60,8 +58,57 @@ namespace algorithm {
             return container.pop_back();
         }
 
+        void swap( stack& other ) noexcept {
+            using std::swap;
+            swap(container, other.container);
+        }
+
     protected:
         Container container;
 
     };
+
+    template< class T, class Container >
+    bool operator==( const stack<T,Container>& lhs,
+                     const stack<T,Container>& rhs ) {
+        return lhs == rhs;
+    }
+
+    template< class T, class Container >
+    bool operator!=( const stack<T,Container>& lhs,
+                     const stack<T,Container>& rhs ) {
+        return lhs != rhs;
+    }
+
+    template< class T, class Container >
+    bool operator<( const stack<T,Container>& lhs,
+                     const stack<T,Container>& rhs ) {
+        return lhs < rhs;
+    }
+
+    template< class T, class Container >
+    bool operator<=( const stack<T,Container>& lhs,
+                     const stack<T,Container>& rhs ) {
+        return lhs <= rhs;
+    }
+
+    template< class T, class Container >
+    bool operator>( const stack<T,Container>& lhs,
+                    const stack<T,Container>& rhs ) {
+        return lhs > rhs;
+    }
+
+    template< class T, class Container >
+    bool operator>=( const stack<T,Container>& lhs,
+                     const stack<T,Container>& rhs ) {
+        return lhs >= rhs;
+    }
+
+    template< class T, class Container >
+    void swap( stack<T,Container>& lhs,
+               stack<T,Container>& rhs ) noexcept {
+        lhs.swap(rhs);
+    };
+
+
 }
