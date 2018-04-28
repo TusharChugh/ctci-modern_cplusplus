@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include <vector>
 #include <assert.h>
+#include <vector>
 
 namespace algorithm {
 template<typename T> class MultiStack {
@@ -22,71 +22,69 @@ public:
 private:
     using iterator = typename std::vector<T>::iterator;
 
-    size_type num_stacks_;
+    const size_type num_stacks_;
+    std::vector<size_type> stack_capacities_;
     std::vector<size_type> sizes_;
     std::vector<T> data_;
-    std::vector<iterator> tops_;
-    std::vector<iterator> begins_;
 
-public:
-    explicit MultiStack( size_type total_size, size_type num_stacks )
-        : num_stacks_( num_stacks ), sizes_( num_stacks ), data_( total_size ){
-        assert(total_size > num_stacks_);
-
-        size_type size_each_container = total_size / num_stacks_;
-        auto data_iter = data_.begin();
-
-        for ( auto& size : sizes_ ) {
-            size = size_each_container;
-            std::advance(data_iter, size);
-            tops_.push_back(data_iter);
-        }
-        begins_ = tops_;
+    size_type index_of_top( size_type stack_id ) const {
+        size_type offset = stack_id * stack_capacities_[stack_id];
+        size_type size   = sizes_.at( stack_id );
+        return offset + size - 1;
     }
 
-    explicit MultiStack( const std::vector<size_type>& sizes )
-        : num_stacks_( sizes.size() ), sizes_( num_stacks_ ) {
-        unsigned int total_size = 0;
-        for(auto& size: sizes)
-            total_size += size;
-        data_.reserve(total_size);
-        auto data_iter = data_.begin();
-        for ( size_type i = 0; i < num_stacks_; ++i ) {
-            sizes_[i] = sizes[i];
-            std::advance(data_iter, sizes[i]);
-            tops_.push_back(data_iter);
-        }
-        begins_ = tops_;
+    bool is_full( size_type stack_id ) const {
+        return sizes_.at( stack_id ) == stack_capacities_.at( stack_id );
+    }
+
+public:
+    explicit MultiStack( size_type num_stacks, size_type stack_capacity )
+        : num_stacks_( num_stacks ), stack_capacities_( num_stacks, stack_capacity ),
+          sizes_( num_stacks ), data_( num_stacks * stack_capacity ) {}
+
+    explicit MultiStack( const std::vector<size_type>& stack_capacities )
+        : num_stacks_( stack_capacities.size() ), stack_capacities_( stack_capacities ),
+          sizes_( num_stacks_ ) {
+        unsigned int total_capacity = 0;
+        for ( auto& stack_capacity : stack_capacities )
+            total_capacity += stack_capacity;
+        data_.reserve( total_capacity );
     }
 
     inline reference top( size_type stack_id ) {
-        return *(tops_.at( stack_id ));
+        if ( empty( stack_id ) ) std::__throw_underflow_error( "Stack is empty" );
+        return data_.at( index_of_top( stack_id ) );
     }
 
     inline const_reference top( size_type stack_id ) const {
-        return tops_.at( stack_id );
+        if ( empty( stack_id ) ) std::__throw_underflow_error( "Stack is empty" );
+        return data_.at( index_of_top( stack_id ) );
     }
 
-    inline bool empty(size_type stack_id) const {
-        return begins_.at(stack_id) == tops_.at(stack_id);
+    inline bool empty( size_type stack_id ) const {
+        return sizes_.at( stack_id ) == 0;
     }
 
-    inline size_type size(size_type stack_id) const {
-        return std::distance(begins_.at(stack_id), tops_.at(stack_id));
+    inline size_type size( size_type stack_id ) const {
+        return sizes_.at( stack_id );
     }
 
     inline void push( size_type stack_id, const value_type& value ) {
-        *(tops_.at(stack_id)) = value;
+        if ( is_full( stack_id ) ) std::__throw_out_of_range( "Stack is full" );
+        ++sizes_.at( stack_id );
+        data_.at( index_of_top( stack_id ) ) = value;
     }
 
-    inline void push(size_type stack_id, value_type&& value ) {
-        *(tops_.at(stack_id))++ = value;
-
+    inline void push( size_type stack_id, value_type&& value ) {
+        if ( is_full( stack_id ) ) std::__throw_out_of_range( "Stack is full" );
+        ++sizes_.at( stack_id );
+        data_.at( index_of_top( stack_id ) ) = std::move( value );
     }
 
-    inline void pop(size_type stack_id) {
-        delete tops_.at(stack_id);
-        --tops_.at(stack_id);
+    inline void pop( size_type stack_id ) {
+        if ( empty( stack_id ) ) std::__throw_underflow_error( "Stack is empty" );
+        data_.erase( static_cast<iterator>( index_of_top( stack_id ) ) );
+        --sizes_.at( stack_id );
     }
 };
 } // namespace algorithm
