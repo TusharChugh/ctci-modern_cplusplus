@@ -48,11 +48,11 @@ public:
     }
 
     inline void push( value_type&& value ) {
-        return container.push_back( std::move( value ) );
+        container.push_back( std::move( value ) );
     }
 
     inline void pop() {
-        return container.pop_back();
+        container.pop_back();
     }
 
     void swap( stack& other ) noexcept {
