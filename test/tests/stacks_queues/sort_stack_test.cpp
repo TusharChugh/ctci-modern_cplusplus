@@ -74,3 +74,69 @@ TEST( SORT_STACK, THOUSAND_RANDOM_ELEMENTS ) {
         output.pop();
     }
 }
+
+TEST( SORT_STACK_VARIANT, REVERSE_ELEMENTS ) {
+    std::stack<int> input;
+
+    for ( int i = 1; i <= 5; ++i )
+        input.push( i );
+
+    algorithm::sort_stack_variant( input );
+
+    for ( int i = 1; i <= 5; ++i ) {
+        ASSERT_EQ( i, input.top() );
+        input.pop();
+    }
+}
+
+TEST( SORT_STACK_VARIANT, SORTED_ELEMENTS ) {
+    std::stack<int> input;
+
+    for ( int i = 5; i >= 1; --i )
+        input.push( i );
+
+    algorithm::sort_stack_variant( input );
+
+    for ( int i = 1; i <= 5; ++i ) {
+        ASSERT_EQ( i, input.top() );
+        input.pop();
+    }
+}
+
+TEST( SORT_STACK_VARIANT, FIVE_RANDOM_ELEMENTS ) {
+    std::vector<int> random_values( NUM_RANDOM_ELEMENTS );
+    std::srand( seed );
+    std::generate( random_values.begin(), random_values.end(), []() { return std::rand() % 100; } );
+
+    std::stack<int> input;
+
+    for ( const auto random_value : random_values )
+        input.push( random_value );
+
+    algorithm::sort_stack_variant( input );
+    std::sort( random_values.begin(), random_values.end() );
+
+    for ( const auto random_value : random_values ) {
+        ASSERT_EQ( random_value, input.top() );
+        input.pop();
+    }
+}
+
+TEST( SORT_STACK_VARIANT, THOUSAND_RANDOM_ELEMENTS ) {
+    std::vector<int> random_values( 1000 );
+    std::srand( seed );
+    std::generate( random_values.begin(), random_values.end(), []() { return std::rand(); } );
+
+    std::stack<int> input;
+
+    for ( const auto random_value : random_values )
+        input.push( random_value );
+
+    algorithm::sort_stack_variant( input );
+    std::sort( random_values.begin(), random_values.end() );
+
+    for ( const auto random_value : random_values ) {
+        ASSERT_EQ( random_value, input.top() );
+        input.pop();
+    }
+}

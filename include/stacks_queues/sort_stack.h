@@ -38,4 +38,29 @@ std::stack<T> sort_stack( std::stack<T> input, Compare comp = Compare() ) {
     }
     return sorted;
 }
+
+template<typename T, typename Compare = std::less<T>>
+void sort_stack_variant( std::stack<T>& input, Compare comp = Compare() ) {
+    std::stack<T> sorted;
+    while ( !input.empty() ) {
+        // Step 1: store the top of input stack in temporary variable
+        const auto poped_element = input.top();
+        input.pop();
+
+        // Step2: move the elements of sorted to input less than the temp variable
+        while ( !sorted.empty() && comp( poped_element, sorted.top() ) ) {
+            input.push( sorted.top() );
+            sorted.pop();
+        }
+
+        // Step 3: insert the temporary values to sorted stack
+        sorted.push( poped_element );
+    }
+    // Step 4: move the elements back from sorted to input
+    while ( !sorted.empty() ) {
+        input.push( sorted.top() );
+        sorted.pop();
+    }
+}
+
 } // namespace algorithm
