@@ -12,7 +12,8 @@
 ```
 back()
 push_back()
-pop_back()```
+pop_back()
+```
 The standard containers ```std::vector```, ```std::deque``` and ```std::list``` satisfy these requirements.
 
 4. Containers must provide following functions for queue (in addition to being a sequence container) :
@@ -20,5 +21,6 @@ The standard containers ```std::vector```, ```std::deque``` and ```std::list``` 
 back()
 front()
 push_back()
-pop_front()```
+pop_front()
+```
 The standard containers ```std::deque``` and ```std::list``` satisfy these requirements.
