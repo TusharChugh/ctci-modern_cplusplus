@@ -3,7 +3,8 @@
 ## Key Points:
 1. Stack and queue are the adaptors to the [sequence containers]. See the adaptor pattern. http://en.cppreference.com/w/cpp/concept/SequenceContainer
 2. Both stack and queue take container as the template arguments. Default container is ```std::deque<T>```
-```template<
+```
+template<
     class T,
     class Container = std::deque<T>
 > class queue;
