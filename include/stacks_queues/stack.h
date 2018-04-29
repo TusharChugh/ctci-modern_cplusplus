@@ -44,7 +44,7 @@ public:
     }
 
     inline void push( const value_type& value ) {
-        return container.push_back( value );
+        container.push_back( value );
     }
 
     inline void push( value_type&& value ) {
