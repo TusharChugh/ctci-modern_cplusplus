@@ -18,7 +18,7 @@ public:
 
     stack( const stack& other ) : container( other.container ) {}
 
-    stack( stack&& other ) : container( std::move( other.container ) ) {}
+    stack( stack&& other ) noexcept : container( std::move( other.container ) ) {}
 
     /**
      * Destructs the container adaptor.
