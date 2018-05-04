@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+#include <type_traits>
 
 namespace algorithm {
 template<typename T, typename Container = std::deque<T>> class stack {
