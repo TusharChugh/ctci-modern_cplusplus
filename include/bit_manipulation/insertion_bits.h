@@ -31,7 +31,10 @@ uint32_t insert_bits( uint32_t input, uint32_t bits, uint8_t start, uint8_t end 
     uint32_t mask = 0;
     // create a mask to clear the input bits from start to end
     // start with 1s (count of 1s equal num of required bits)
-    for ( uint8_t num = 0; num <= end - start; ++num ) {
+    // alternative for generating ones :
+    // num = 1 << (end - start + 1)
+    // num = num - 1
+    for ( uint32_t num = 0; num <= end - start; ++num ) {
         mask += ( 1 << num );
     }
 
@@ -41,4 +44,24 @@ uint32_t insert_bits( uint32_t input, uint32_t bits, uint8_t start, uint8_t end 
     // apply the mask on the input and insert the bits
     return ( ( input & mask ) | ( bits << start ) );
 }
+
+/**
+ * @brief insert bits to the input at the given location | alternative
+ *
+ * @param input input number
+ * @param bits bits to be inserted
+ * @param start start loation of the input where bits are to be inserted
+ * @param end end loation of the input where bits are to be inserted
+ * @return uint32_t result after adding bits to input
+ */
+uint32_t insert_bits_mask( uint32_t input, uint32_t bits, uint8_t start, uint8_t end ) {
+    // create a mask to clear the input bits from start to end
+    // start with 1s (count of 1s equal num of required bits)
+    // slide them to the required locations and then invert it
+    auto mask = ~( ( ( 1 << ( end - start + 1 ) ) - 1 ) << start );
+
+    // apply the mask on the input and insert the bits
+    return ( ( input & mask ) | ( bits << start ) );
+}
+
 } // namespace algorithm
