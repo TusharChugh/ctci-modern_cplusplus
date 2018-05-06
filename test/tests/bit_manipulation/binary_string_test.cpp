@@ -1,6 +1,5 @@
 #include "include/bit_manipulation/binary_string.h"
 #include <gtest/gtest.h>
-#include <bitset>
 
 TEST( BINARY_STRING, DEMO_TEST ) {
     ASSERT_EQ( "1", algorithm::binary_string( 0.5 ) );
