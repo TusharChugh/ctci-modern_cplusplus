@@ -13,7 +13,7 @@ namespace algorithm {
 /**
  * @brief Flips the bits to generate a number bigger than the input keeping number of one bits as
  * same
- *
+ * returns 0 if the greater number requires more bits than the input
  * @param input give number
  * @return unsigned int number with flipped bits
  */
@@ -32,7 +32,8 @@ unsigned int next_number( unsigned int input ) {
         input_copy >>= 1;
     }
 
-    if ( count_zeros + count_ones == sizeof( input ) * 8 ) return 0;
+    if ( count_zeros + count_ones == sizeof( input ) * 8 || count_zeros + count_ones == 0 )
+        return 0;
 
     auto zero_flip_pos = count_zeros + count_ones;
 
