@@ -35,7 +35,7 @@ std::size_t flip_bit_win( int input ) {
     std::size_t previous_length = 0;
 
     while ( input != 0 ) {
-        if ( input & 1 == 1 )
+        if ( ( input & 1 ) == 1 )
             ++current_length;
         else {
             previous_length = ( input & 0b10 ) == 0 ? 0 : current_length;

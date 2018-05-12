@@ -34,7 +34,7 @@ uint32_t insert_bits( uint32_t input, uint32_t bits, uint8_t start, uint8_t end 
     // alternative for generating ones :
     // num = 1 << (end - start + 1)
     // num = num - 1
-    for ( uint32_t num = 0; num <= end - start; ++num ) {
+    for ( uint8_t num = 0; num <= end - start; ++num ) {
         mask += ( 1 << num );
     }
 
