@@ -1,6 +1,7 @@
 /**
  * @brief Simple templatized bst implementation
- * TODO: const_pointer, destructor
+ * Happiness is a tree with a unique pointer
+ * TODO: const_pointer, destructor, -- operator, return iterator, implement find
  * References
  * 1. Leak-Freedum in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
@@ -11,8 +12,6 @@
 #pragma once
 
 #include <memory>
-
-#include <iostream>
 
 namespace algorithm {
 template <typename T> class bst_node {
@@ -88,8 +87,12 @@ public:
         return temp;
     }
 
-    bool operator!=( const bst_iterator& rhs ) {
-        return pointee_ != rhs.pointee_;
+    friend bool operator!=( const bst_iterator& lhs, const bst_iterator& rhs ) {
+        return lhs.pointee_ != rhs.pointee_;
+    }
+
+    friend bool operator==( const bst_iterator& lhs, const bst_iterator& rhs ) {
+        return !( lhs != rhs );
     }
 
     ~bst_iterator() = default;
@@ -165,16 +168,18 @@ private:
     }
 
     bool insert_iterative( const value_type& value ) {
-        if ( root_ == nullptr ) {
-            root_ = std::make_unique<node_type>( value );
+        auto current_node = root_.get();
+        if ( current_node == end_ ) {
+            auto new_root    = std::make_unique<node_type>( value );
+            new_root->right_ = std::move( root_ );
+            root_            = std::move( new_root );
             ++size_;
             return true;
         }
 
-        auto current_node = root_.get();
-        auto parent       = current_node;
+        auto parent = current_node;
 
-        while ( current_node != nullptr ) {
+        while ( current_node != nullptr && current_node != end_ ) {
             parent = current_node;
             if ( value < current_node->value_ )
                 current_node = ( current_node->left_ ).get();
@@ -184,10 +189,24 @@ private:
                 return false;
         }
 
-        if ( value < parent->value_ )
-            current_node->left_ = std::make_unique<node_type>( value );
-        else
-            current_node->right_ = std::make_unique<node_type>( value );
+        if ( value < parent->value_ ) {
+            parent->left_ = std::make_unique<node_type>( value, parent );
+        }
+
+        else {
+            if ( current_node == end_ ) {
+                auto new_node    = std::make_unique<node_type>( value, parent );
+                new_node->right_ = std::move( parent->right_ );
+                parent->right_   = std::move( new_node );
+                end_             = ( ( parent->right_ )->right_ ).get();
+            }
+
+            else {
+                parent->right_ = std::make_unique<node_type>( value, parent );
+            }
+        }
+
+        ++size_;
         return true;
     }
 

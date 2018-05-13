@@ -7,6 +7,7 @@ TEST( BST, EMPTY_TEST ) {
     algorithm::bst<int> input;
     ASSERT_TRUE( input.empty() );
     ASSERT_EQ( 0, input.size() );
+    ASSERT_EQ( input.begin(), input.end() );
 }
 
 TEST( BST, INSERT_ONE_ELEMENT ) {
@@ -28,16 +29,11 @@ TEST( BST, INSERT_FIVE_ELEMENT ) {
 
     ASSERT_EQ( 1, *input.begin() );
     ASSERT_EQ( 5, input.size() );
+
     auto it = input.begin();
-    std::cout << *it++ << " ";
-    std::cout << *it++ << " ";
-    std::cout << *it++ << " ";
-    std::cout << *it++ << " ";
-    std::cout << *it++ << " ";
-    for ( auto in : input ) {
-        std::cout << in << " ";
+    for ( auto val : {1, 2, 3, 4, 5} ) {
+        ASSERT_EQ( val, *it++ );
     }
-    std::cout << std::endl;
 }
 
 TEST( BST, FOR_EACH_TEST ) {
@@ -52,8 +48,26 @@ TEST( BST, FOR_EACH_TEST ) {
 
     ASSERT_EQ( 1, *input.begin() );
     ASSERT_EQ( 5, input.size() );
-    for ( auto in : input ) {
-        std::cout << in << " ";
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    auto output_iter        = output.begin();
+    for ( auto& in : input ) {
+        ASSERT_EQ( *output_iter++, in );
     }
-    std::cout << std::endl;
+}
+
+TEST( BST, LVALUE_REF_TEST ) {
+    algorithm::bst<int> input;
+    std::vector<int> input_ref = {3, 2, 5, 4, 1};
+
+    for ( auto& in : input_ref ) {
+        input.insert( in );
+    }
+
+    ASSERT_EQ( 1, *input.begin() );
+    ASSERT_EQ( 5, input.size() );
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    auto output_iter        = output.begin();
+    for ( auto& in : input ) {
+        ASSERT_EQ( *output_iter++, in );
+    }
 }
