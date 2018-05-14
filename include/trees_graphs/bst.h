@@ -1,7 +1,7 @@
 /**
  * @brief Simple templatized bst implementation
  * Happiness is a tree with a unique pointer
- * TODO: const_pointer, destructor, -- operator, implement find, erase, emplace
+ * TODO: const_pointer, destructor, -- operator, implement find, erase, emplace, initializer list
  * References
  * 1. Leak-Freedum in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
@@ -136,7 +136,14 @@ public:
         return search_value( key );
     }
 
-    size_type erase( const_reference key );
+    iterator erase( iterator pos ) {
+        return erase_value( pos );
+    }
+
+    size_type erase( const_reference key ) {
+        erase( find( key ) );
+        return size_;
+    }
 
     size_type size() const noexcept {
         return size_;
@@ -282,6 +289,8 @@ private:
         }
         return make_iterator( end_ );
     }
+
+    iterator erase_value( iterator pos ) {}
 
     // void release_subtree( node_pointer n ) {
     //     while ( n->left_ || n->right_ ) {
