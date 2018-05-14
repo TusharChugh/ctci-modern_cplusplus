@@ -21,11 +21,30 @@ TEST( BST, INSERT_FIVE_ELEMENT ) {
     algorithm::bst<int> input;
     ASSERT_TRUE( input.empty() );
     ASSERT_EQ( 0, input.size() );
-    input.insert( 3 );
-    input.insert( 2 );
-    input.insert( 5 );
-    input.insert( 4 );
-    input.insert( 1 );
+    ASSERT_EQ( 3, *input.insert( 3 ).first );
+    ASSERT_EQ( 2, *input.insert( 2 ).first );
+    ASSERT_EQ( 5, *input.insert( 5 ).first );
+    ASSERT_EQ( 4, *input.insert( 4 ).first );
+    ASSERT_EQ( 1, *input.insert( 1 ).first );
+
+    ASSERT_EQ( 1, *input.begin() );
+    ASSERT_EQ( 5, input.size() );
+
+    auto it = input.begin();
+    for ( auto val : {1, 2, 3, 4, 5} ) {
+        ASSERT_EQ( val, *it++ );
+    }
+}
+
+TEST( BST, INSERT_FIVE_ELEMENT_TRUE_INSERT ) {
+    algorithm::bst<int> input;
+    ASSERT_TRUE( input.empty() );
+    ASSERT_EQ( 0, input.size() );
+    ASSERT_EQ( true, input.insert( 3 ).second );
+    ASSERT_EQ( true, input.insert( 2 ).second );
+    ASSERT_EQ( true, input.insert( 5 ).second );
+    ASSERT_EQ( true, input.insert( 4 ).second );
+    ASSERT_EQ( true, input.insert( 1 ).second );
 
     ASSERT_EQ( 1, *input.begin() );
     ASSERT_EQ( 5, input.size() );
@@ -69,5 +88,53 @@ TEST( BST, LVALUE_REF_TEST ) {
     auto output_iter        = output.begin();
     for ( auto& in : input ) {
         ASSERT_EQ( *output_iter++, in );
+    }
+}
+
+TEST( BST, DUPLICATES_FIVE ) {
+    algorithm::bst<int> input;
+    ASSERT_TRUE( input.empty() );
+    ASSERT_EQ( 0, input.size() );
+    ASSERT_EQ( 3, *input.insert( 3 ).first );
+    ASSERT_EQ( 2, *input.insert( 2 ).first );
+    ASSERT_EQ( 5, *input.insert( 5 ).first );
+    ASSERT_EQ( 4, *input.insert( 4 ).first );
+    ASSERT_EQ( 1, *input.insert( 1 ).first );
+
+    ASSERT_EQ( 3, *input.insert( 3 ).first );
+    ASSERT_EQ( 2, *input.insert( 2 ).first );
+    ASSERT_EQ( 5, *input.insert( 5 ).first );
+    ASSERT_EQ( 4, *input.insert( 4 ).first );
+    ASSERT_EQ( 1, *input.insert( 1 ).first );
+
+    ASSERT_EQ( false, input.insert( 3 ).second );
+    ASSERT_EQ( false, input.insert( 2 ).second );
+    ASSERT_EQ( false, input.insert( 5 ).second );
+    ASSERT_EQ( false, input.insert( 4 ).second );
+    ASSERT_EQ( false, input.insert( 1 ).second );
+
+    ASSERT_EQ( 1, *input.begin() );
+    ASSERT_EQ( 5, input.size() );
+
+    auto it = input.begin();
+    for ( auto val : {1, 2, 3, 4, 5} ) {
+        ASSERT_EQ( val, *it++ );
+    }
+}
+
+TEST( BST, FIND_TEST ) {
+    algorithm::bst<int> input;
+    std::vector<int> input_ref = {3, 2, 5, 4, 1};
+
+    for ( auto& in : input_ref ) {
+        input.insert( in );
+    }
+
+    ASSERT_EQ( 1, *input.begin() );
+    ASSERT_EQ( 5, input.size() );
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input.find( val ) );
     }
 }

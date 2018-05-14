@@ -1,7 +1,7 @@
 /**
  * @brief Simple templatized bst implementation
  * Happiness is a tree with a unique pointer
- * TODO: const_pointer, destructor, -- operator, return iterator, implement find
+ * TODO: const_pointer, destructor, -- operator, implement find, erase, emplace
  * References
  * 1. Leak-Freedum in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
@@ -12,6 +12,8 @@
 #pragma once
 
 #include <memory>
+
+#include <iostream>
 
 namespace algorithm {
 template <typename T> class bst_node {
@@ -115,8 +117,6 @@ public:
     using const_node_type = const bst_node<Key>;
     using node_pointer    = typename node_type::node_pointer;
     using iterator        = bst_iterator<node_type>;
-    using const_iterator  = bst_iterator<const_node_type>;
-    // using node_const_pointer = typename const node_pointer;
 
 private:
     using node_raw_pointer = typename node_type::node_raw_pointer;
@@ -124,15 +124,17 @@ private:
 public:
     bst() : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {}
 
-    bool insert( const value_type& value ) {
+    std::pair<iterator, bool> insert( const value_type& value ) {
         return insert_iterative( value );
     }
 
-    bool insert( value_type&& value ) {
+    std::pair<iterator, bool> insert( value_type&& value ) {
         return insert_iterative( std::forward<value_type>( value ) );
     }
 
-    const_reference find( const_reference key );
+    iterator find( const_reference key ) {
+        return search_value( key );
+    }
 
     size_type erase( const_reference key );
 
@@ -163,18 +165,14 @@ private:
         return bst_iterator<node_type>( input );
     }
 
-    const_iterator make_iterator( const node_raw_pointer input ) const noexcept {
-        return bst_iterator<node_type>( input );
-    }
-
-    bool insert_iterative( const value_type& value ) {
+    std::pair<iterator, bool> insert_iterative( const value_type& value ) {
         auto current_node = root_.get();
         if ( current_node == end_ ) {
             auto new_root    = std::make_unique<node_type>( value );
             new_root->right_ = std::move( root_ );
             root_            = std::move( new_root );
             ++size_;
-            return true;
+            return std::make_pair<iterator, bool>( make_iterator( root_.get() ), true );
         }
 
         auto parent = current_node;
@@ -186,11 +184,14 @@ private:
             else if ( value > current_node->value_ )
                 current_node = ( current_node->right_ ).get();
             else
-                return false;
+                return std::make_pair<iterator, bool>( make_iterator( current_node ), false );
+            ;
         }
+        ++size_;
 
         if ( value < parent->value_ ) {
             parent->left_ = std::make_unique<node_type>( value, parent );
+            return std::make_pair<iterator, bool>( make_iterator( parent->left_.get() ), true );
         }
 
         else {
@@ -204,20 +205,18 @@ private:
             else {
                 parent->right_ = std::make_unique<node_type>( value, parent );
             }
+            return std::make_pair<iterator, bool>( make_iterator( parent->right_.get() ), true );
         }
-
-        ++size_;
-        return true;
     }
 
-    bool insert_iterative( value_type&& value ) {
+    std::pair<iterator, bool> insert_iterative( value_type&& value ) {
         auto current_node = root_.get();
         if ( current_node == end_ ) {
             auto new_root    = std::make_unique<node_type>( std::forward<value_type>( value ) );
             new_root->right_ = std::move( root_ );
             root_            = std::move( new_root );
             ++size_;
-            return true;
+            return std::make_pair<iterator, bool>( make_iterator( root_.get() ), true );
         }
 
         auto parent = current_node;
@@ -229,12 +228,15 @@ private:
             else if ( value > current_node->value_ )
                 current_node = ( current_node->right_ ).get();
             else
-                return false;
+                return std::make_pair<iterator, bool>( make_iterator( current_node ), false );
+            ;
         }
+        ++size_;
 
         if ( value < parent->value_ ) {
             parent->left_ =
                 std::make_unique<node_type>( std::forward<value_type>( value ), parent );
+            return std::make_pair<iterator, bool>( make_iterator( parent->left_.get() ), true );
         }
 
         else {
@@ -250,10 +252,8 @@ private:
                 parent->right_ =
                     std::make_unique<node_type>( std::forward<value_type>( value ), parent );
             }
+            return std::make_pair<iterator, bool>( make_iterator( parent->right_.get() ), true );
         }
-
-        ++size_;
-        return true;
     }
 
     node_raw_pointer tree_min( node_raw_pointer x ) noexcept {
@@ -268,6 +268,19 @@ private:
             x = ( x->right_ ).get();
         }
         return x;
+    }
+
+    iterator search_value( const_reference value ) {
+        auto current_node = root_.get();
+        while ( current_node != nullptr && current_node != end_ ) {
+            if ( current_node->value_ == value )
+                return make_iterator( current_node );
+            else if ( value < current_node->value_ )
+                current_node = ( current_node->left_ ).get();
+            else if ( value > current_node->value_ )
+                current_node = ( current_node->right_ ).get();
+        }
+        return make_iterator( end_ );
     }
 
     // void release_subtree( node_pointer n ) {
