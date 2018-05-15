@@ -150,3 +150,47 @@ TEST( BST, INITIALIZER_LIST ) {
         ASSERT_EQ( val, *input.find( val ) );
     }
 }
+
+TEST( BST, COPY_CONSTRUCTOR) {
+    algorithm::bst<int> input = {3, 2, 5, 4, 1};
+
+    auto input_copy(input);
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input_copy.find( val ) );
+    }
+}
+
+TEST( BST, MOVE_CONSTRUCTOR) {
+    algorithm::bst<int> input = {3, 2, 5, 4, 1};
+
+    auto input_copy(std::move(input));
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input_copy.find( val ) );
+    }
+}
+
+TEST( BST, COPY_ASSIGNMENT) {
+    algorithm::bst<int> input = {3, 2, 5, 4, 1};
+
+    auto input_copy = std::move(input);
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input_copy.find( val ) );
+    }
+}
+
+TEST( BST, MOVE_ASSIGNMENT) {
+    algorithm::bst<int> input = {3, 2, 5, 4, 1};
+
+    auto input_copy = std::move(input);
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input_copy.find( val ) );
+    }
+}

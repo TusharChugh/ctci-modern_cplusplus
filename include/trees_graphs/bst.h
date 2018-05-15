@@ -1,10 +1,13 @@
 /**
  * @brief Simple templatized bst implementation
  * Happiness is a tree with a unique pointer
- * TODO: copy/move constructure, const_pointer, destructor, -- operator, implement find, erase, emplace, initializer list
+ * TODO: -- operator, erase, emplace
  * References
- * 1. Leak-Freedum in C++... By default - HERB SUTTER
+ * 1. Leak-Freedom in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
+ * 3. Only implemented const_iterator with iterator alias (this choice limits the use of std::copy for initializer_list and copy constructor)
+ * we can use pointer as the template argument in order to support iterator and const_iterator
+ * 4. Default destructor would take H (height of tree) space on the stack. This is not a effective way, use the suggestion from Herb Sutter's cppconn talk
  * @file bst.h
  * @author Tushar Chugh
  */
@@ -12,8 +15,6 @@
 #pragma once
 
 #include <memory>
-
-#include <iostream>
 
 namespace algorithm {
 template <typename T> class bst_node {
@@ -60,7 +61,7 @@ private:
         return ( x == ( ( x->parent_ )->left_ ).get() );
     }
 
-    node_pointer tree_next( node_pointer x ) noexcept {
+    node_pointer successor(node_pointer x) noexcept {
         if ( ( x->right_ ) != nullptr ) return tree_min( ( x->right_ ).get() );
         while ( !is_left_child( x ) )
             x = ( x->parent_ );
@@ -79,7 +80,7 @@ public:
     }
 
     bst_iterator& operator++() {
-        pointee_ = tree_next( pointee_ );
+        pointee_ = successor(pointee_);
         return *this;
     }
 
@@ -124,16 +125,14 @@ private:
 public:
     bst() : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {}
 
-    bst(const bst& other) {
+    bst(const bst& other) : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
         copy_bst(other);
     }
 
-    bst(bst&& other) noexcept {
-        other.root_ = std::move(root_);
-        other.end_ = end_;
-        other.size_ = size_;
-
-        reset();
+    bst(bst&& other) noexcept : root_{std::move(other.root_)}, end_( std::move(other.end_) ), size_{other.size_}{
+        other.root_ = nullptr;
+        other.end_ = nullptr;
+        other.size_ = 0;
     }
 
     bst(std::initializer_list<value_type> init) : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
@@ -176,6 +175,22 @@ public:
 
     iterator end() const noexcept {
         return make_iterator( end_ );
+    }
+
+    bst& operator=(const bst& other) {
+        root_ = std::make_unique<node_type>( value_type{} );
+        end_ = root_.get();
+        size_ = 0;
+        copy_bst(other);
+    }
+
+    bst& operator=(bst&& other) {
+        root_ = std::make_unique<node_type>( value_type{} );
+        end_ = root_.get();
+        size_ = 0;
+        other.root_ = nullptr;
+        other.end_ = nullptr;
+        other.size_ = 0;
     }
 
     ~bst() = default;
@@ -309,18 +324,9 @@ private:
 
     iterator erase_value( iterator pos ) {}
 
-    void reset() noexcept {
-        root_ = nullptr;
-        end_ = nullptr;
-        size_ = 0;
-    }
-
     void copy_bst(const bst& other) {
-        root_ = std::make_unique<node_type> (value_type{}) ;
-        end_ = root_.get();
-        size_ = 0;
         for(const auto& ot: other)
-            insert(*ot);
+            insert(ot);
     }
 
     // void release_subtree( node_pointer n ) {
