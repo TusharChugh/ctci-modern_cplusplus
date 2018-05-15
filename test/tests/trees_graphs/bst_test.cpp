@@ -138,3 +138,15 @@ TEST( BST, FIND_TEST ) {
         ASSERT_EQ( val, *input.find( val ) );
     }
 }
+
+TEST( BST, INITIALIZER_LIST ) {
+    algorithm::bst<int> input = {3, 2, 5, 4, 1};
+
+    ASSERT_EQ( 1, *input.begin() );
+    ASSERT_EQ( 5, input.size() );
+
+    std::vector<int> output = {1, 2, 3, 4, 5};
+    for ( auto& val : output ) {
+        ASSERT_EQ( val, *input.find( val ) );
+    }
+}

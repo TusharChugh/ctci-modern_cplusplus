@@ -1,7 +1,7 @@
 /**
  * @brief Simple templatized bst implementation
  * Happiness is a tree with a unique pointer
- * TODO: const_pointer, destructor, -- operator, implement find, erase, emplace, initializer list
+ * TODO: copy/move constructure, const_pointer, destructor, -- operator, implement find, erase, emplace, initializer list
  * References
  * 1. Leak-Freedum in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
@@ -124,6 +124,23 @@ private:
 public:
     bst() : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {}
 
+    bst(const bst& other) {
+        copy_bst(other);
+    }
+
+    bst(bst&& other) noexcept {
+        other.root_ = std::move(root_);
+        other.end_ = end_;
+        other.size_ = size_;
+
+        reset();
+    }
+
+    bst(std::initializer_list<value_type> init) : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
+        for(const auto& in: init)
+            insert(in);
+    }
+
     std::pair<iterator, bool> insert( const value_type& value ) {
         return insert_iterative( value );
     }
@@ -153,11 +170,11 @@ public:
         return size_ == 0;
     }
 
-    iterator begin() noexcept {
+    iterator begin() const noexcept {
         return make_iterator( tree_min( root_.get() ) );
     }
 
-    iterator end() noexcept {
+    iterator end() const noexcept {
         return make_iterator( end_ );
     }
 
@@ -168,7 +185,7 @@ private:
     node_raw_pointer end_;
     size_type size_;
 
-    iterator make_iterator( node_raw_pointer input ) noexcept {
+    iterator make_iterator( node_raw_pointer input ) const noexcept {
         return bst_iterator<node_type>( input );
     }
 
@@ -263,21 +280,21 @@ private:
         }
     }
 
-    node_raw_pointer tree_min( node_raw_pointer x ) noexcept {
+    node_raw_pointer tree_min( node_raw_pointer x ) const noexcept {
         while ( x->left_ != nullptr ) {
             x = ( x->left_ ).get();
         }
         return x;
     }
 
-    node_raw_pointer tree_max( node_raw_pointer x ) noexcept {
+    node_raw_pointer tree_max( node_raw_pointer x ) const noexcept {
         while ( x->right_ != nullptr ) {
             x = ( x->right_ ).get();
         }
         return x;
     }
 
-    iterator search_value( const_reference value ) {
+    iterator search_value( const_reference value ) const noexcept {
         auto current_node = root_.get();
         while ( current_node != nullptr && current_node != end_ ) {
             if ( current_node->value_ == value )
@@ -291,6 +308,20 @@ private:
     }
 
     iterator erase_value( iterator pos ) {}
+
+    void reset() noexcept {
+        root_ = nullptr;
+        end_ = nullptr;
+        size_ = 0;
+    }
+
+    void copy_bst(const bst& other) {
+        root_ = std::make_unique<node_type> (value_type{}) ;
+        end_ = root_.get();
+        size_ = 0;
+        for(const auto& ot: other)
+            insert(*ot);
+    }
 
     // void release_subtree( node_pointer n ) {
     //     while ( n->left_ || n->right_ ) {
