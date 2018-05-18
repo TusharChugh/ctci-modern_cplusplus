@@ -5,9 +5,11 @@
  * References
  * 1. Leak-Freedom in C++... By default - HERB SUTTER
  * 2. LLVM STL set implementation
- * 3. Only implemented const_iterator with iterator alias (this choice limits the use of std::copy for initializer_list and copy constructor)
+ * 3. Only implemented const_iterator with iterator alias (this choice limits the use of std::copy
+ * for initializer_list and copy constructor)
  * we can use pointer as the template argument in order to support iterator and const_iterator
- * 4. Default destructor would take H (height of tree) space on the stack. This is not a effective way, use the suggestion from Herb Sutter's cppconn talk
+ * 4. Default destructor would take H (height of tree) space on the stack. This is not a effective
+ * way, use the suggestion from Herb Sutter's cppconn talk
  * @file bst.h
  * @author Tushar Chugh
  */
@@ -17,6 +19,12 @@
 #include <memory>
 
 namespace algorithm {
+
+/**
+ * @brief bst node used by binary search tree (bst)
+ *
+ * @tparam T typename of type T
+ */
 template <typename T> class bst_node {
 public:
     using value_type       = T;
@@ -38,6 +46,11 @@ public:
     node_raw_pointer parent_;
 };
 
+/**
+ * @brief iterator for the bst
+ *
+ * @tparam bst_node_t node of type bst
+ */
 template <typename bst_node_t>
 class bst_iterator : public std::iterator<const std::bidirectional_iterator_tag, bst_node_t*> {
 private:
@@ -61,7 +74,7 @@ private:
         return ( x == ( ( x->parent_ )->left_ ).get() );
     }
 
-    node_pointer successor(node_pointer x) noexcept {
+    node_pointer successor( node_pointer x ) noexcept {
         if ( ( x->right_ ) != nullptr ) return tree_min( ( x->right_ ).get() );
         while ( !is_left_child( x ) )
             x = ( x->parent_ );
@@ -80,7 +93,7 @@ public:
     }
 
     bst_iterator& operator++() {
-        pointee_ = successor(pointee_);
+        pointee_ = successor( pointee_ );
         return *this;
     }
 
@@ -106,6 +119,11 @@ private:
     explicit bst_iterator( const node_pointer& pointee = nullptr ) : pointee_( pointee ) {}
 };
 
+/**
+ * @brief implementation of the bst
+ *
+ * @tparam Key Key
+ */
 template <typename Key> class bst {
 public:
     using value_type      = Key;
@@ -125,19 +143,22 @@ private:
 public:
     bst() : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {}
 
-    bst(const bst& other) : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
-        copy_bst(other);
+    bst( const bst& other )
+        : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
+        copy_bst( other );
     }
 
-    bst(bst&& other) noexcept : root_{std::move(other.root_)}, end_( std::move(other.end_) ), size_{other.size_}{
+    bst( bst&& other ) noexcept
+        : root_{std::move( other.root_ )}, end_( other.end_ ), size_{other.size_} {
         other.root_ = nullptr;
-        other.end_ = nullptr;
+        other.end_  = nullptr;
         other.size_ = 0;
     }
 
-    bst(std::initializer_list<value_type> init) : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
-        for(const auto& in: init)
-            insert(in);
+    bst( std::initializer_list<value_type> init )
+        : root_{std::make_unique<node_type>( value_type{} )}, end_( root_.get() ), size_{0} {
+        for ( const auto& in : init )
+            insert( in );
     }
 
     std::pair<iterator, bool> insert( const value_type& value ) {
@@ -156,10 +177,10 @@ public:
         return erase_value( pos );
     }
 
-    size_type erase( const_reference key ) {
-        erase( find( key ) );
-        return size_;
-    }
+    // size_type erase( const_reference key ) {
+    //     erase( find( key ) );
+    //     return size_;
+    // }
 
     size_type size() const noexcept {
         return size_;
@@ -177,19 +198,19 @@ public:
         return make_iterator( end_ );
     }
 
-    bst& operator=(const bst& other) {
+    bst& operator=( const bst& other ) {
         root_ = std::make_unique<node_type>( value_type{} );
-        end_ = root_.get();
+        end_  = root_.get();
         size_ = 0;
-        copy_bst(other);
+        copy_bst( other );
     }
 
-    bst& operator=(bst&& other) {
-        root_ = std::make_unique<node_type>( value_type{} );
-        end_ = root_.get();
-        size_ = 0;
+    bst& operator=( bst&& other ) {
+        root_       = std::make_unique<node_type>( value_type{} );
+        end_        = root_.get();
+        size_       = 0;
         other.root_ = nullptr;
-        other.end_ = nullptr;
+        other.end_  = nullptr;
         other.size_ = 0;
     }
 
@@ -322,11 +343,9 @@ private:
         return make_iterator( end_ );
     }
 
-    iterator erase_value( iterator pos ) {}
-
-    void copy_bst(const bst& other) {
-        for(const auto& ot: other)
-            insert(ot);
+    void copy_bst( const bst& other ) {
+        for ( const auto& ot : other )
+            insert( ot );
     }
 
     // void release_subtree( node_pointer n ) {
@@ -336,3 +355,72 @@ private:
     // }
 };
 } // namespace algorithm
+
+/**
+ * @brief erase the value at the given position
+ * Maintain invariant for the parent (left->parent == this && right->parent == this)
+ * @param pos position of the value to be erased
+ * @return iterator iterator to the node replacing the pos (can be used with foreach)
+ */
+// iterator erase_value( iterator pos ) {
+//     // case 0: handles end node or empty bst
+//     if ( pos == end() ) return end();
+//     --size_;
+//     auto node        = pos.pointee_;
+//     auto node_parent = node->parent_;
+
+//     // case 1: Both left and right are nullptr. Parent invariant is maintained
+//     if ( node->left_ == nullptr && node->right_ == nullptr ) {
+//         if ( pos.is_left_child( node ) )
+//             ( node_parent->left_ ).reset();
+//         else
+//             ( node_parent->right_ ).reset();
+//     }
+
+//     // case 2: has one child. Manually maintain the parent invariant
+//     else if ( node->left_ == nullptr ) {
+//         if ( node == root_.get() ) {
+//             root_          = std::move( node->right_ );
+//             root_->parent_ = nullptr;
+//             return begin();
+//         } else if ( pos.is_left_child( node ) ) {
+//             ( node->right_ )->parent_ = node_parent;
+//             node_parent->left_        = std::move( node->right_ );
+//             return make_iterator( node_parent->left_ );
+//         } else {
+//             ( node->right_ )->parent_ = node_parent;
+//             node_parent->right_       = std::move( node->right_ );
+//             return make_iterator( node_parent->right_ );
+//         }
+//     }
+
+//     else if ( node->right_ == nullptr || node->right_ == end_ ) {
+//         if ( node == root_.get() ) {
+//             root_          = std::move( node->left_ );
+//             root_->parent_ = nullptr;
+//             return begin();
+//         } else if ( pos.is_left_child( node ) ) {
+//             ( node->left_ )->parent_ = node_parent;
+//             node_parent->left_       = std::move( node->left_ );
+//             return make_iterator( node_parent->left_ );
+//         } else {
+//             ( node->left_ )->parent_ = node_parent;
+//             node_parent->right_      = std::move( node->left_ );
+//             return make_iterator( node_parent->left_ );
+//         }
+//     }
+
+//     // case 3: has two left child. NOTE: successor is definitely in the right sub-tree
+//     else {
+//         auto successor = pos.successor( node );
+//         if ( node == root.get() ) {
+
+//         } else {
+//             ( ( successor->parent_ )->left_ ).release();
+//             ( successor->parent_ )->left_ = std::move( successor->right_ );
+
+//             successor->right_ = std::move( node->right_ );
+//             successor->left_  = std::move( node->left_ );
+//         }
+//     }
+// }
