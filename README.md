@@ -31,8 +31,10 @@ algorithms-practice
 
 ## Build Code (Inclduing gtest and google benchmark)
 1. [Install bazel](https://docs.bazel.build/versions/master/install.html)
-2. Clone this repository and enter the repo directory
-3. Build the code: ```bazel build ...```
+2. Install GCC-5 or above
+3. Make sure CC and CXX environment variables are pointing to the latest GCC version in /user/bin
+4. Clone this repository and enter the repo directory
+5. Build the code: ```bazel build ...```
 
 ## Run
 1. Run test cases:  ```bazel run test:algorithms-test```
