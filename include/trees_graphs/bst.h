@@ -214,6 +214,10 @@ public:
         other.size_ = 0;
     }
 
+    node_raw_pointer root() {
+        return root_.get();
+    }
+
     ~bst() = default;
 
 private:
