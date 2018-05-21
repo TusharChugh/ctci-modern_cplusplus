@@ -136,8 +136,6 @@ public:
     using const_node_type = const bst_node<Key>;
     using node_pointer    = typename node_type::node_pointer;
     using iterator        = bst_iterator<node_type>;
-
-private:
     using node_raw_pointer = typename node_type::node_raw_pointer;
 
 public:
@@ -214,7 +212,7 @@ public:
         other.size_ = 0;
     }
 
-    node_raw_pointer root() {
+    node_raw_pointer root() const noexcept {
         return root_.get();
     }
 
