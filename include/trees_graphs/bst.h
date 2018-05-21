@@ -126,16 +126,16 @@ private:
  */
 template <typename Key> class bst {
 public:
-    using value_type      = Key;
-    using pointer         = typename std::unique_ptr<Key>;
-    using const_pointer   = const std::unique_ptr<Key>;
-    using reference       = Key&;
-    using const_reference = const Key&;
-    using size_type       = std::size_t;
-    using node_type       = bst_node<Key>;
-    using const_node_type = const bst_node<Key>;
-    using node_pointer    = typename node_type::node_pointer;
-    using iterator        = bst_iterator<node_type>;
+    using value_type       = Key;
+    using pointer          = typename std::unique_ptr<Key>;
+    using const_pointer    = const std::unique_ptr<Key>;
+    using reference        = Key&;
+    using const_reference  = const Key&;
+    using size_type        = std::size_t;
+    using node_type        = bst_node<Key>;
+    using const_node_type  = const bst_node<Key>;
+    using node_pointer     = typename node_type::node_pointer;
+    using iterator         = bst_iterator<node_type>;
     using node_raw_pointer = typename node_type::node_raw_pointer;
 
 public:

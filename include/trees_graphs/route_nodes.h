@@ -14,11 +14,11 @@
 #include "adj_list_graph.h"
 
 namespace algorithm {
-bool route_between_nodes( const adj_list_graph<true>& graph, size_t to, size_t from ) {
+bool route_between_nodes( const adj_list_graph<true>& graph, int to, int from ) {
     if ( to == from ) return true;
 
-    std::unordered_set<size_t> visited;
-    std::queue<size_t> pending;
+    std::unordered_set<int> visited;
+    std::queue<int> pending;
     pending.push( to );
 
     while ( !pending.empty() ) {
