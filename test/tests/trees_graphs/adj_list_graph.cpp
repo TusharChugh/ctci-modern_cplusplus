@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 TEST( ADJ_LIST_GRPAH, DIRECTED_DEMO ) {
-    algorithm::adj_list_graph input_graph( 5, true );
+    algorithm::adj_list_graph<true> input_graph( 5 );
 
     input_graph.add_edge( 0, 1 );
     input_graph.add_edge( 0, 2 );
@@ -20,7 +20,7 @@ TEST( ADJ_LIST_GRPAH, DIRECTED_DEMO ) {
 }
 
 TEST( ADJ_LIST_GRPAH, UNDIRECTED_DEMO ) {
-    algorithm::adj_list_graph input_graph( 5 );
+    algorithm::adj_list_graph<false> input_graph( 5 );
 
     input_graph.add_edge( 0, 1 );
     input_graph.add_edge( 0, 2 );

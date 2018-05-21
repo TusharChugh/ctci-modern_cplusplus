@@ -14,7 +14,7 @@
 
 namespace algorithm {
 
-class adj_list_graph {
+template <bool directed = true> class adj_list_graph {
 
 public:
     using value_type      = int;
@@ -23,9 +23,8 @@ public:
     using const_reference = const std::forward_list<int>&;
     using iterator        = graph_type::iterator;
 
-    adj_list_graph( size_t num_vertices = 0, bool directed = false )
-        : vertices_{num_vertices}, num_vertices_( num_vertices ), num_edges_{0},
-          directed_( directed ) {}
+    adj_list_graph( size_t num_vertices = 0 )
+        : vertices_{num_vertices}, num_vertices_( num_vertices ), num_edges_{0} {}
 
     size_t num_vertices() const noexcept {
         return num_vertices_;
@@ -39,11 +38,11 @@ public:
 
     void add_edge( size_t to, size_t from ) {
         add_edge_helper( to, from );
-        if ( !directed_ ) add_edge_helper( from, to );
+        if ( !directed ) add_edge_helper( from, to );
         ++num_edges_;
     }
 
-    const_reference adjacent_vertices( size_t vertex ) {
+    const_reference adjacent_vertices( size_t vertex ) const {
         return vertices_.at( vertex );
     }
 
@@ -59,7 +58,6 @@ private:
     std::vector<std::forward_list<int>> vertices_;
     const size_t num_vertices_;
     size_t num_edges_;
-    const bool directed_;
 
     void add_edge_helper( size_t to, size_t from ) {
         vertices_.at( to ).push_front( from );
