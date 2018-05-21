@@ -216,6 +216,10 @@ public:
         return root_.get();
     }
 
+    node_raw_pointer end_pointer() const noexcept {
+        return end_;
+    }
+
     ~bst() = default;
 
 private:

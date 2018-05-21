@@ -15,26 +15,27 @@
 
 namespace algorithm {
 
-    void list_depth(bst<int>::node_raw_pointer node, size_t depth, std::vector<std::forward_list<int>>& output);
+    using node_pointer = typename bst<int>::node_raw_pointer;
+
+    void list_depth(node_pointer node, size_t depth, std::vector<std::forward_list<int>>& output, node_pointer end);
 
     /**
-     * Algo will work for any binary try but as this repo as bst implemented, so using that
-     * Note end() of bst would be appended as well
+     * Algorithm will work for any binary try but as this repo as bst implemented, so using that
      * @param input binary tree
      * @return list of depths
      */
     std::vector<std::forward_list<int>> list_depth(bst<int>& input) {
         std::vector<std::forward_list<int>> output;
-        list_depth(input.root(), 0, output);
+        list_depth(input.root(), 0, output, input.end_pointer());
         return output;
     }
 
-    void list_depth(bst<int>::node_raw_pointer node, size_t depth, std::vector<std::forward_list<int>>& output) {
-        if(node == nullptr) return;
+    void list_depth( node_pointer  node, size_t depth, std::vector<std::forward_list<int>>& output, node_pointer end) {
+        if(node == nullptr || node == end) return;
         if(depth == output.size())
             output.push_back(std::forward_list<int> {});
         output.at(depth).push_front(node->value_);
-        list_depth((node->left_).get(), depth + 1, output);
-        list_depth((node->right_).get(), depth + 1, output);
+        list_depth((node->left_).get(), depth + 1, output, end);
+        list_depth((node->right_).get(), depth + 1, output, end);
     }
 }
