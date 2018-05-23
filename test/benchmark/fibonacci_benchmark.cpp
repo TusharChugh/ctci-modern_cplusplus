@@ -2,10 +2,12 @@
 #include <iostream>
 #include "include/recursion_dp/fibonacci.h"
 
+using algorithm::fib_recurssive;
+
 static void BM_simple_fib( benchmark::State& state ) {
     int result = 0;
     while ( state.KeepRunning() )
-        result |= fib( 5 );
+        result |= fib_recurssive( 5 );
 }
 // Register the function as a benchmark
 BENCHMARK( BM_simple_fib )->Arg( 5 )->Arg( 42 )->Arg( 87 );
