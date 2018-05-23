@@ -1,9 +1,9 @@
 #include "include/recursion_dp/fibonacci.h"
 #include <gtest/gtest.h>
 
-using algorithm::fib_recurssive;
 using algorithm::fib_memoize_full;
 using algorithm::fib_memoize_iterative;
+using algorithm::fib_recurssive;
 
 TEST( FIBONACCI, SIMPLE_RECURSSION_TEST ) {
     ASSERT_EQ( 0, fib_recurssive( 0 ) );
@@ -40,4 +40,3 @@ TEST( FIBONACCI, SIMPLE_ITERATIVE_TEST ) {
     ASSERT_EQ( 13, fib_memoize_iterative( 7 ) );
     ASSERT_EQ( 21, fib_memoize_iterative( 8 ) );
 }
-
