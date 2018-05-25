@@ -14,10 +14,12 @@ namespace algorithm {
 
 template <typename T>
 void power_set_helper( const T& element, std::vector<std::vector<T>>& output ) {
-    for ( auto set_element : std::vector<std::vector<T>>(output) ) {
-        set_element.push_back( element );
-        output.push_back( set_element );
+    std::vector<std::vector<T>> more_subsets;
+    for ( auto set_elements : output ) {
+        set_elements.push_back( element );
+        more_subsets.push_back( set_elements );
     }
+    std::move( more_subsets.begin(), more_subsets.end(), std::back_inserter( output ) );
     output.emplace_back( std::initializer_list<T>{element} );
 }
 
