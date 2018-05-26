@@ -151,10 +151,10 @@ TEST( BST, INITIALIZER_LIST ) {
     }
 }
 
-TEST( BST, COPY_CONSTRUCTOR) {
+TEST( BST, COPY_CONSTRUCTOR ) {
     algorithm::bst<int> input = {3, 2, 5, 4, 1};
 
-    auto input_copy(input);
+    auto input_copy( input );
 
     std::vector<int> output = {1, 2, 3, 4, 5};
     for ( auto& val : output ) {
@@ -162,10 +162,10 @@ TEST( BST, COPY_CONSTRUCTOR) {
     }
 }
 
-TEST( BST, MOVE_CONSTRUCTOR) {
+TEST( BST, MOVE_CONSTRUCTOR ) {
     algorithm::bst<int> input = {3, 2, 5, 4, 1};
 
-    auto input_copy(std::move(input));
+    auto input_copy( std::move( input ) );
 
     std::vector<int> output = {1, 2, 3, 4, 5};
     for ( auto& val : output ) {
@@ -173,10 +173,10 @@ TEST( BST, MOVE_CONSTRUCTOR) {
     }
 }
 
-TEST( BST, COPY_ASSIGNMENT) {
+TEST( BST, COPY_ASSIGNMENT ) {
     algorithm::bst<int> input = {3, 2, 5, 4, 1};
 
-    auto input_copy = std::move(input);
+    auto input_copy = std::move( input );
 
     std::vector<int> output = {1, 2, 3, 4, 5};
     for ( auto& val : output ) {
@@ -184,13 +184,24 @@ TEST( BST, COPY_ASSIGNMENT) {
     }
 }
 
-TEST( BST, MOVE_ASSIGNMENT) {
+TEST( BST, MOVE_ASSIGNMENT ) {
     algorithm::bst<int> input = {3, 2, 5, 4, 1};
 
-    auto input_copy = std::move(input);
+    auto input_copy = std::move( input );
 
     std::vector<int> output = {1, 2, 3, 4, 5};
     for ( auto& val : output ) {
         ASSERT_EQ( val, *input_copy.find( val ) );
+    }
+}
+
+TEST( BST, INORDER_TEST ) {
+    algorithm::bst<int> input        = {50, 40, 60, 30, 45, 55, 70, 20, 35};
+    std::vector<int> expected_output = {20, 30, 35, 40, 45, 50, 55, 60, 70};
+
+    auto ex_out_it = expected_output.begin();
+
+    for ( auto in_it : input ) {
+        ASSERT_EQ( *( ex_out_it++ ), in_it );
     }
 }
