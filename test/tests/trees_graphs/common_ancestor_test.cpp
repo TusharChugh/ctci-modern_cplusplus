@@ -3,6 +3,18 @@
 
 #include <iostream>
 
+/**
+ * DEMO TREE
+ *            50
+ *           /  \
+ *         40    60
+ *         /\     /\
+ *        30 45  55 70
+ *        /\
+ *       20 35
+ *
+ */
+
 TEST( COMMON_ANCESTOR, ROOT ) {
     algorithm::bst<int> tree = {50, 40, 60, 30, 45, 55, 70, 20, 35};
     auto root                = tree.root();
