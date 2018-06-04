@@ -65,7 +65,7 @@ private:
 };
 
 /**
- * @brief Equal opeator needed for asserts in the tests
+ * @brief Equal operator needed for asserts in the tests
  *
  * @param left left operand
  * @param right right operand
