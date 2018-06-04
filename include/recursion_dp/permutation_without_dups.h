@@ -32,4 +32,22 @@ std::vector<std::string> perms_no_dups( std::string input ) {
     }
     return result;
 }
+
+std::vector<std::string> perms_no_dups_bootomsup( std::string input ) {
+    std::vector<std::string> result;
+    if ( input.empty() ) {
+        result.push_back( "" );
+        return result;
+    }
+
+    for ( size_t pos = 0; pos < input.length(); ++pos ) {
+        auto before = input.substr( 0, pos );
+        auto after  = input.substr( pos + 1, input.length() - pos - 1 );
+        auto words  = perms_no_dups_bootomsup( before + after );
+        for ( auto word : words )
+            result.push_back( input.at( pos ) + word );
+    }
+    return result;
+}
+
 } // namespace algorithm
