@@ -93,7 +93,7 @@ public:
         return grid_.at( row ).at( col );
     }
 
-    cost_t cost( size_t row, size_t col ) const {
+    cost_t cost( cell_t cell ) const {
         return cost( cell.first, cell.second );
     }
 
