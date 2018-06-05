@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <set>
-#include "include/backtracking/sudoku_solver.h"
+#include "include/recursion_dp/sudoku_solver.h"
 
 void printBoard( std::vector<std::vector<char>>& board ) {
     for ( auto row : board ) {
@@ -32,7 +32,7 @@ TEST( SUDOKU, SUDOKU_SOLVER_TEST ) {
                                           {'1', '2', '4', '5', '7', '9', '6', '3', '8'},
                                           {'8', '7', '5', '6', '3', '4', '1', '9', '2'}};
     //    printBoard(input);
-    tlib::sudokuSolve( input );
+    algorithm::sudokuSolve( input );
     //    std::cout<<"Result"<<std::endl;
     //    printBoard(input);
     for ( size_t i = 0; i < input.size(); ++i ) {
