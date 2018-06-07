@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <array>
+#include <cmath>
 #include <cstddef>
 #include <utility>
 #include <vector>
@@ -88,6 +90,19 @@ public:
         return neighbors;
     }
 
+    std::vector<cell_t> neighbors( cell_t cell,
+                                   const std::vector<std::pair<int, int>>& directions ) const
+        noexcept {
+        if ( !valid_loc( cell ) ) throw std::__throw_invalid_argument;
+
+        std::vector<std::pair<size_t, size_t>> neighbors;
+        for ( const auto& dir : directions ) {
+            auto next = cell_t{cell.first + dir.first, cell.second + dir.second};
+            if ( valid_loc( next ) ) neighbors.push_back( next );
+        }
+        return neighbors;
+    }
+
     cost_t cost( size_t row, size_t col ) const {
         if ( !valid_loc( row, col ) ) throw std::__throw_invalid_argument;
         return grid_.at( row ).at( col );
@@ -106,6 +121,10 @@ public:
         update_cost( cell.first, cell.second, cost );
     }
 
+    cost_t manhattan_distance( cell_t from, cell_t to ) {
+        return std::abs( from.first - to.first ) + std::abs( from.second - to.second );
+    }
+
     std::pair<size_t, size_t> size() {
         return std::make_pair( rows_, cols_ );
     }
@@ -115,4 +134,5 @@ private:
     size_t cols_;
     std::vector<std::vector<cost_t>> grid_;
 };
+
 } // namespace algorithm
