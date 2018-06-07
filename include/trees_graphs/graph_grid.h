@@ -104,7 +104,7 @@ public:
     }
 
     cost_t cost( size_t row, size_t col ) const {
-        if ( !valid_loc( row, col ) ) throw std::__throw_invalid_argument;
+        if ( !valid_loc( row, col ) ) std::__throw_invalid_argument( "invalid location" );
         return grid_.at( row ).at( col );
     }
 
@@ -113,7 +113,7 @@ public:
     }
 
     void update_cost( size_t row, size_t col, cost_t cost ) {
-        if ( !valid_loc( row, col ) ) throw std::__throw_invalid_argument;
+        if ( !valid_loc( row, col ) ) std::__throw_invalid_argument( "invalid location" );
         grid_.at( row ).at( col ) = cost;
     }
 
@@ -121,7 +121,9 @@ public:
         update_cost( cell.first, cell.second, cost );
     }
 
-    cost_t manhattan_distance( cell_t from, cell_t to ) {
+    cost_t manhattan_distance( cell_t from, cell_t to ) const {
+        if ( !valid_loc( from ) || !valid_loc( to ) )
+            std::__throw_invalid_argument( "invalid from or to location" );
         return std::abs( from.first - to.first ) + std::abs( from.second - to.second );
     }
 

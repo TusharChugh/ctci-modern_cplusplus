@@ -53,6 +53,7 @@ void a_star_search( const Graph& graph, Location start, Location goal,
                  new_cost < cost_so_far.at( next ) ) {
                 cost_so_far[next] = new_cost;
                 came_from[next]   = current;
+                auto priority     = new_cost + graph.manhattan_distance( next, goal );
                 fringe.emplace( new_cost, next );
             }
         }
@@ -72,6 +73,16 @@ Path reconstruct_path( Location start, Location goal,
     return path;
 }
 
+/**
+ * @brief Note: using A* search here for fun. DFS/BFS would work fine.
+ * Note: current algorithm will step on the obstacle depending on the cost of those.
+ * This can be easily changed if it the cell is to be considered as a barrier
+ *
+ * @param graph
+ * @param start
+ * @param goal
+ * @return Path
+ */
 Path find_path( const Graph& graph, Location start, Location goal ) {
     std::unordered_map<Location, Location, algorithm::cell_hash> came_from;
     a_star_search( graph, start, goal, came_from );
