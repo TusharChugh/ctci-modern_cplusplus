@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include <iostream>
 #include <vector>
 
 namespace algorithm {
@@ -35,10 +34,7 @@ int make_change_dp( const std::vector<int>& coins, unsigned sum ) {
             auto sum_including =
                 ( col - coins[row - 1] >= 0 ) ? table[row][col - coins[row - 1]] : 0;
             table[row][col] = sum_excluding + sum_including;
-
-            std::cout << table[row][col] << " ";
         }
-        std::cout << std::endl;
     }
     return table[coins.size()][sum];
 }
