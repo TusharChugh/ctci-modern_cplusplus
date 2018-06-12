@@ -54,7 +54,7 @@ void a_star_search( const Graph& graph, Location start, Location goal,
                 cost_so_far[next] = new_cost;
                 came_from[next]   = current;
                 auto priority     = new_cost + graph.manhattan_distance( next, goal );
-                fringe.emplace( new_cost, next );
+                fringe.emplace( priority, next );
             }
         }
     }
