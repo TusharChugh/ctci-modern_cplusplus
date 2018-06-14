@@ -13,9 +13,9 @@ namespace algorithm {
 
 template <typename ForwardIt, typename Compare>
 void selection_sort( ForwardIt first, ForwardIt last, Compare comp ) {
-    for ( ForwardIt current = first; first != last; ++first ) {
-        ForwardIt minimum = first;
-        ForwardIt other   = first;
+    for ( auto current = first; first != last; ++first ) {
+        auto minimum = first;
+        auto other   = first;
         ++other;
 
         while ( other != last ) {

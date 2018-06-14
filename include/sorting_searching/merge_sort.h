@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <vector>
 
 namespace algorithm {
 
