@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <algorithm>
+#include <functional>
 
 namespace algorithm {
 

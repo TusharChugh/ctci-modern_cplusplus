@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include <algorithm>
 #include <cstddef>
 #include <vector>
+#include <functional>
 
 namespace algorithm {
 
