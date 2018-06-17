@@ -60,4 +60,33 @@ void rotate_matrix( image_type& image ) {
         --end;
     }
 }
+
+//Jesh
+void transpose(image_type& mat){
+    for(std::size_t i=0; i<mat.size();++i){
+        for(std::size_t j=i; j<mat[0].size();++j){
+            std::swap(mat[i][j], mat[j][i]);
+        }
+    }
+}
+
+void reversecolumns(image_type& mat){
+    for(std::size_t i=0; i<mat.size();++i){
+        for(std::size_t j=0; j<mat[0].size()/2;++j){
+            std::swap(mat[i][j], mat[i][mat[0].size()-j-1]);
+        }
+    }
+}
+/*
+*Implementation is not the best in terms of efficiency
+*But it is best in terms of simplicity
+*complexity Time:O(N), Memory:O(1) Inplace
+*N:number of elements in the image matrix 
+*/
+void rotate_matrix2(image_type& mat){
+    if(!(mat.size())) return;
+    if(mat.size()!=mat[0].size()) std::__throw_invalid_argument("Not a square matrix");
+    transpose(mat);
+    reversecolumns(mat);
+}
 } // namespace algorithm
