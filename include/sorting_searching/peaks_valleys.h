@@ -6,8 +6,8 @@
  * an array
  * of integers, sort the array into an alternating sequence of peaks and valleys.
  * EXAMPLE
- * Input: {S, 3, 1,2, 3}
- * Output: {S, 1,3,2, 3}
+ * Input: {5, 3, 1, 2, 3}
+ * Output: {5, 1, 3, 2, 3}
  *
  * @file peaks_valleys.h
  * @author Tushar Chugh
@@ -15,4 +15,15 @@
 
 #pragma once
 
-namespace algorithm {}
+#include <algorithm>
+#include <vector>
+
+namespace algorithm {
+void peaks_valleys_sort( std::vector<int>& input ) {
+    std::sort( input.begin(), input.end() );
+
+    for ( size_t index = 1; index < input.size(); index += 2 ) {
+        std::swap( input[index], input[index - 1] );
+    }
+}
+} // namespace algorithm
