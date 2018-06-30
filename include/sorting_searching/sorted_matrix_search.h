@@ -8,4 +8,20 @@
 
 #pragma once
 
-namespace algorithm {}
+#include <cstddef>
+#include <utility>
+#include <vector>
+
+namespace algorithm {
+    std::pair<int, int> find_element(std::vector<std::vector<int>> matrix, int element) {
+        int row = 0;
+        int col = matrix[0].size() - 1;
+
+        while (row > matrix.size() || col >= 0) {
+            if(matrix[row][col] == element) return std::make_pair(row, col);
+            if(matrix[row][col] > element) --col;
+            if(matrix[row][col] < element) ++row;
+        }
+        return std::make_pair(-1, -1);
+    }
+}
