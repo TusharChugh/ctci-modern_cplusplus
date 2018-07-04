@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace algorithm {
-    std::pair<int, int> find_element(std::vector<std::vector<int>> matrix, int element) {
+    std::pair<int, int> find_element(const std::vector<std::vector<int>>& matrix, int element) {
         int row = 0;
         int col = matrix[0].size() - 1;
 
