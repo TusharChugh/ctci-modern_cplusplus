@@ -1,8 +1,5 @@
 #include "include/sorting_searching/merge_sort.h"
 #include <gtest/gtest.h>
-#include <stdlib.h>
-#include <algorithm>
-#include <vector>
 
 TEST( MERGESORT, MERGESORT_TWO_UNSORTED_ELEMENTS_TRUE_Test ) {
     std::vector<int> input1{5, 2};
