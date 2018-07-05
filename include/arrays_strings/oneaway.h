@@ -87,16 +87,16 @@ bool one_edit_away( const std::string& first, const std::string& second ) {
 constexpr size_t NUM_CHAR = 256;
 bool one_edit_away2(const std::string& first, const std::string& second){
     if (abs(first.size()-second.size())>1) return false;
-    unsigned int mmcounter=0;
+    bool found_difference=0;
     unsigned int i=0, j=0;
-    bool firstGreater = (first.size()>second.size());
-    bool secondGreater = (first.size()<second.size());
+    bool is_first_bigger = (first.size()>second.size());
+    bool is_second_bigger = (first.size()<second.size());
     while((i<first.size()) & (j<second.size())){
         if (first.at(i)!=second.at(j)){
-            mmcounter++;
-            if(mmcounter > 1) return false;
-            if(firstGreater) j--;
-            else if (secondGreater) i--;
+            if(found_difference) return false;
+            found_difference = true;
+            if(is_first_bigger) j--;
+            else if (is_second_bigger) i--;
         } 
         i++, j++;
     }
