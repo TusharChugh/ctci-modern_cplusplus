@@ -1,8 +1,6 @@
 #include "include/trees_graphs/bst.h"
 #include <gtest/gtest.h>
 
-#include <iostream>
-
 TEST( BST, EMPTY_TEST ) {
     algorithm::bst<int> input;
     ASSERT_TRUE( input.empty() );
