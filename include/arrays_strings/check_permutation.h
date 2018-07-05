@@ -65,14 +65,14 @@ bool check_permutation_map( const std::string& input, const std::string& other )
         if ( input_counts.count( in ) )
             ++input_counts.at( in );
         else
-            input_counts.insert( std::make_pair( in, 1 ) );
+            input_counts.emplace(in, 1 );
     }
 
     for ( auto ot : other ) {
         if ( other_counts.count( ot ) )
             ++other_counts.at( ot );
         else
-            other_counts.insert( std::make_pair( ot, 1 ) );
+            other_counts.emplace( ot, 1 );
     }
 
     // Check if both the maps are equal
