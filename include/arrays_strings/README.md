@@ -9,4 +9,4 @@
 2. Create an array/vector of size (= NUM INPUTS)
 3. Hash sets and hash maps are useful. 
 4. In STL unordered_map and unordered_set containers provide O(1) are implemented using hash
-5. In STL map and set are ordered and are implemeneted by Red-Black trees (O(log(N)) look-up time)
+5. In STL map and set are ordered and are implemented by Red-Black trees (O(log(N)) look-up time)
