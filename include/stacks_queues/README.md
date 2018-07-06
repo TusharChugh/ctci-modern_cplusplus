@@ -26,7 +26,7 @@ pop_front()
 ```
 The standard containers ```std::deque``` and ```std::list``` satisfy these requirements.
 
-5. Iterators are not implemented with noth the data structures as we don't have a way to iterator over the elements
+5. Iterators are not implemented with both the data structures as we don't have a way to iterator over the elements
 
 6. As iterators can't be implemented with both (no begin() and end() functions), we cannot use ```for_each``` and std::algorithms like ```std::sort```, ```std::reverse``` and more. 
 

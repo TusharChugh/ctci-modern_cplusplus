@@ -25,7 +25,7 @@ namespace algorithm {
         if(head2) {
             result ->next = head2;
         }
-        
+
         return result_head->next;
     }
 }
