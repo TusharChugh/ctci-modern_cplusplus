@@ -18,7 +18,7 @@
 #include <vector>
 
 namespace algorithm {
-// better would be to implement a class the dfs function has too many arguments - ugly
+// better would be to implement a class as the dfs function below has too many arguments - ugly
 
 void dfs_build( char project, std::vector<char>& ordered_projects,
                 const std::unordered_multimap<char, char>& dependency_pairs,

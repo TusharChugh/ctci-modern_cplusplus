@@ -39,7 +39,7 @@ public:
         : rows_( rows ), cols_( cols ), grid_( rows + 2, std::vector<cost_t>( cols + 2, cost ) ) {}
 
     // copy constructor
-    graph_grid( graph_grid& other ) {
+    graph_grid(const graph_grid& other ) {
         this->rows_ = other.rows_;
         this->cols_ = other.cols_;
         grid_       = other.grid_;
