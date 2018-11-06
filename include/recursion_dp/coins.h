@@ -10,6 +10,7 @@
 #pragma once
 
 #include <vector>
+#include <cstddef>
 
 namespace algorithm {
 int make_change( const std::vector<int>& coins, int sum, int index ) {
@@ -28,8 +29,8 @@ int make_change_recursive( const std::vector<int>& coins, int sum ) {
 int make_change_dp( const std::vector<int>& coins, unsigned sum ) {
     std::vector<std::vector<int>> table( coins.size() + 1, std::vector<int>( sum + 1 ) );
     table[0][0] = 1;
-    for ( auto row = 1; row <= coins.size(); ++row ) {
-        for ( auto col = 0; col <= sum; ++col ) {
+    for ( int row = 1; row <= coins.size(); ++row ) {
+        for ( int col = 0; col <= sum; ++col ) {
             auto sum_excluding = ( row - 1 >= 0 ) ? table[row - 1][col] : 0;
             auto sum_including =
                 ( col - coins[row - 1] >= 0 ) ? table[row][col - coins[row - 1]] : 0;

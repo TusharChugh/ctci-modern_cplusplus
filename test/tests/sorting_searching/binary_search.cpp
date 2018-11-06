@@ -1,5 +1,3 @@
-#pragma once
-
 #include <include/gtest/gtest.h>
 #include "include/sorting_searching/binary_search.h"
 
