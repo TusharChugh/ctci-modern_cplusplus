@@ -11,7 +11,7 @@
 #pragma once
 //Implementation with simple_int_bst
 
-#include "include/trees_graphs/simple_int_bst.h"
+#include <trees_graphs/simple_int_bst.h>
 
 namespace algorithm {
     bst_int_node* min_tree(bst_int_node* node) {

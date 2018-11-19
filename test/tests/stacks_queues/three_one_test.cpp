@@ -1,4 +1,4 @@
-#include "include/stacks_queues/three_one.h"
+#include <stacks_queues/three_one.h>
 #include <gtest/gtest.h>
 
 TEST( THREE_ONE, THREE_SIZE_TWO_STACKS ) {

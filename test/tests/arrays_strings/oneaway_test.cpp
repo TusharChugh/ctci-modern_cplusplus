@@ -1,6 +1,5 @@
-#include "include/arrays_strings/oneaway.h"
+#include <arrays_strings/oneaway.h>
 #include <gtest/gtest.h>
-#include <string>
 
 using algorithm::one_edit_away;
 using algorithm::one_edit_away2;

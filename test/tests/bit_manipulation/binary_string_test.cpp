@@ -1,4 +1,4 @@
-#include "include/bit_manipulation/binary_string.h"
+#include <bit_manipulation/binary_string.h>
 #include <gtest/gtest.h>
 
 TEST( BINARY_STRING, DEMO_TEST ) {

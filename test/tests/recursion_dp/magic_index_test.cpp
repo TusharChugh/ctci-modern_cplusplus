@@ -1,4 +1,4 @@
-#include "include/recursion_dp/magic_index.h"
+#include <recursion_dp/magic_index.h>
 #include <gtest/gtest.h>
 
 TEST( MAGIC_INDEX, MIDDLE ) {

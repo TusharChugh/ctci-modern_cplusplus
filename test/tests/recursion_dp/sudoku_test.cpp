@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <set>
-#include "include/recursion_dp/sudoku_solver.h"
+#include <recursion_dp/sudoku_solver.h>
 
 void printBoard( std::vector<std::vector<char>>& board ) {
     for ( auto row : board ) {

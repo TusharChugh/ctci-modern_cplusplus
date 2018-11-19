@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/trees_graphs/successor.h"
+#include <trees_graphs/successor.h>
 
 /**
  *             40

@@ -1,4 +1,4 @@
-#include "include/arrays_strings/rotate_matrix.h"
+#include <arrays_strings/rotate_matrix.h>
 #include <gtest/gtest.h>
 
 using algorithm::rotate_matrix;

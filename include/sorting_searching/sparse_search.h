@@ -41,15 +41,16 @@ int binary_search( const std::vector<std::string>& input, const std::string& que
 
     if ( mid < 0 ) return mid;
 
-    if ( query == input.at( mid ) ) return mid;
+    if ( query == input.at( mid ) )
+        return mid;
     if ( query < input.at( mid ) )
-        binary_search( input, query, first, mid - 1 );
+        return binary_search( input, query, first, mid - 1 );
     else
-        binary_search( input, query, mid + 1, last );
+        return binary_search( input, query, mid + 1, last );
 }
 
 int sparse_search( const std::vector<std::string>& input, const std::string& query ) {
     if ( input.empty() ) return -1;
-    return binary_search( input, query, 0, input.size() - 1 );
+    return  binary_search( input, query, 0, input.size() - 1 );
 }
 } // namespace algorithm

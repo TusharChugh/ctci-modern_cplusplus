@@ -1,6 +1,5 @@
-#include "include/arrays_strings/string_rotation.h"
+#include <arrays_strings/string_rotation.h>
 #include <gtest/gtest.h>
-#include <string>
 
 using algorithm::is_rotation;
 

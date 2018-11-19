@@ -1,4 +1,4 @@
-#include "include/recursion_dp/triple_step.h"
+#include <recursion_dp/triple_step.h>
 #include <gtest/gtest.h>
 
 TEST( TRIPLE_STEP, BASE_CASES ) {

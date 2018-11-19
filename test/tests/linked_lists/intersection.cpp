@@ -1,4 +1,4 @@
-#include "include/linked_lists/intersection.h"
+#include <linked_lists/intersection.h>
 #include <gtest/gtest.h>
 
 using algorithm::find_intersection;

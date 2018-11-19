@@ -1,4 +1,4 @@
-#include "include/trees_graphs/graph_grid.h"
+#include <trees_graphs/graph_grid.h>
 #include <gtest/gtest.h>
 
 TEST( GRAPH_GRID, INIT_TEST ) {

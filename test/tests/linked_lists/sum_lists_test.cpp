@@ -1,4 +1,4 @@
-#include "include/linked_lists/sum_lists.h"
+#include <linked_lists/sum_lists.h>
 #include <gtest/gtest.h>
 
 using algorithm::Forward_List;

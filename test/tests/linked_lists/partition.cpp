@@ -1,4 +1,4 @@
-#include "include/linked_lists/partition.h"
+#include <linked_lists/partition.h>
 #include <gtest/gtest.h>
 
 using algorithm::Forward_List;

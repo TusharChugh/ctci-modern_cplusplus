@@ -1,4 +1,4 @@
-#include "include/trees_graphs/adj_list_graph.h"
+#include <trees_graphs/adj_list_graph.h>
 #include <gtest/gtest.h>
 
 TEST( ADJ_LIST_GRPAH, DIRECTED_DEMO ) {

@@ -1,4 +1,4 @@
-#include "include/recursion_dp/recursive_multiply.h"
+#include <recursion_dp/recursive_multiply.h>
 #include <gtest/gtest.h>
 
 TEST( RECURSIVE_MULTIPLY, TWO_TIMES_FIVE ) {

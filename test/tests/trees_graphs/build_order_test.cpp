@@ -1,4 +1,4 @@
-#include "include/trees_graphs/build_order.h"
+#include <trees_graphs/build_order.h>
 #include <gtest/gtest.h>
 
 TEST( BUILD_ORDER, DEMO ) {

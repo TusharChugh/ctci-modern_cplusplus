@@ -1,4 +1,4 @@
-#include "include/recursion_dp/paint_fill.h"
+#include <recursion_dp/paint_fill.h>
 #include <gtest/gtest.h>
 
 TEST( PAIN_FILL, SQUARE_MIDDLE_EVEN_GRID ) {

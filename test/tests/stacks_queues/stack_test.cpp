@@ -1,4 +1,4 @@
-#include "include/stacks_queues/stack.h"
+#include <stacks_queues/stack.h>
 #include <gtest/gtest.h>
 
 TEST(STACK_TEST, THREE_ELEMENTS) {

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/sorting_searching/find_duplicates.h"
+#include <sorting_searching/find_duplicates.h>
 
 TEST(FIND_DUPLICATES, THREE_DUPS_TENTOTAL) {
     std::vector<int> input = {1, 5, 3, 2, 4, 3, 6, 3, 10, 11};

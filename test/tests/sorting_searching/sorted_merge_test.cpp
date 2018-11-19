@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/sorting_searching/sorted_merge.h"
+#include <sorting_searching/sorted_merge.h>
 
 TEST(SORTED_MERGE, ALTERNATE_SEQUENCE) {
     std::vector<int> A = {1, 3, 5, 7, 0, 0, 0, 0};

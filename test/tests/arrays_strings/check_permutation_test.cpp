@@ -1,4 +1,4 @@
-#include "include/arrays_strings/check_permutation.h"
+#include <arrays_strings/check_permutation.h>
 #include <gtest/gtest.h>
 #include <string>
 

@@ -1,4 +1,4 @@
-#include "include/trees_graphs/check_subtree.h"
+#include <trees_graphs/check_subtree.h>
 #include <gtest/gtest.h>
 
 TEST( CHECK_SUBTREE, FOUR_ELEMENTS_ROOT ) {

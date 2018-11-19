@@ -1,4 +1,4 @@
-#include "include/recursion_dp/stack_boxes.h"
+#include <recursion_dp/stack_boxes.h>
 #include <gtest/gtest.h>
 
 using algorithm::Box;

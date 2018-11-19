@@ -1,4 +1,4 @@
-#include "include/stacks_queues/stack_min.h"
+#include <stacks_queues/stack_min.h>
 #include <gtest/gtest.h>
 
 TEST( STACK_MIN, FIVE_ELEMENTS ) {

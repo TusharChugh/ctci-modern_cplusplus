@@ -1,6 +1,5 @@
-#include "include/bit_manipulation/next_number.h"
+#include <bit_manipulation/next_number.h>
 #include <gtest/gtest.h>
-#include <vector>
 
 TEST( NEXT_NUMBER, DEMO ) {
     ASSERT_EQ( 0b11011010001111, algorithm::next_number( 0b11011001111100 ) );

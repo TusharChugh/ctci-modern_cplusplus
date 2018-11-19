@@ -1,6 +1,5 @@
-#include "include/arrays_strings/palindrome_permutation.h"
+#include <arrays_strings/palindrome_permutation.h>
 #include <gtest/gtest.h>
-#include <string>
 
 using algorithm::is_palindrome_permutation;
 

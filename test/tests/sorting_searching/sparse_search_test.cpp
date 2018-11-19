@@ -1,4 +1,4 @@
-#include "include/sorting_searching/sparse_search.h"
+#include <sorting_searching/sparse_search.h>
 #include <gtest/gtest.h>
 
 TEST( SPARSE_SEARCH, DEMO ) {

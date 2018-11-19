@@ -1,0 +1,3 @@
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/rebuild_cache.dir
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/googletest.dir
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/edit_cache.dir

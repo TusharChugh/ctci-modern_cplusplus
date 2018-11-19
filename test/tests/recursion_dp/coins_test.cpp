@@ -1,4 +1,4 @@
-#include "include/recursion_dp/coins.h"
+#include <recursion_dp/coins.h>
 #include <gtest/gtest.h>
 
 TEST( COINS, THREE_COINS_RECURSIVE ) {

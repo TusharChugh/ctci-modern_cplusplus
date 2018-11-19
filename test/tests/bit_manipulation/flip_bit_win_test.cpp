@@ -1,4 +1,4 @@
-#include "include/bit_manipulation/flip_bit_win.h"
+#include <bit_manipulation/flip_bit_win.h>
 #include <gtest/gtest.h>
 
 #include <bitset>

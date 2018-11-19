@@ -1,6 +1,6 @@
 #pragma once
 
-#include "include/linked_lists/simple_int_list.h"
+#include <linked_lists/simple_int_list.h>
 
 namespace algorithm {
     List_Node* merge_sorted(List_Node* head1, List_Node* head2) {

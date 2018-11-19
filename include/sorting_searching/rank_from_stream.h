@@ -14,7 +14,7 @@ getRankOfNumber(4) 3
 
 #pragma once
 
-#include "include/trees_graphs/bst.h"
+#include <trees_graphs/bst.h>
 
 namespace algorithm {
     /**

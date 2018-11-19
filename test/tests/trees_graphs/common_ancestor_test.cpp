@@ -1,4 +1,4 @@
-#include "include/trees_graphs/common_ancestor.h"
+#include <trees_graphs/common_ancestor.h>
 #include <gtest/gtest.h>
 
 #include <iostream>

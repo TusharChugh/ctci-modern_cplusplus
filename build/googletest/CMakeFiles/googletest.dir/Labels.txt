@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/googletest
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/googletest.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/CMakeFiles/googletest-complete.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-install.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-download.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-update.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-patch.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-configure.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-build.rule
+/home/fzff9p/c++/ctci-modern_cplusplus/build/googletest/googletest-prefix/src/googletest-stamp/googletest-test.rule

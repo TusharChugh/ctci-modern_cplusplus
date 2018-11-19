@@ -1,4 +1,4 @@
-#include "include/recursion_dp/parens.h"
+#include <recursion_dp/parens.h>
 #include <gtest/gtest.h>
 #include <unordered_set>
 

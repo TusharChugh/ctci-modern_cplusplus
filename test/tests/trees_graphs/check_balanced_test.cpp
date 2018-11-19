@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/trees_graphs/check_balanced.h"
+#include <trees_graphs/check_balanced.h>
 
 TEST(CHECK_BALANCED, EMPTY) {
     algorithm::bst<int> input;

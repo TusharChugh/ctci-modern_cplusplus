@@ -1,4 +1,4 @@
-#include "include/arrays_strings/zero_matrix.h"
+#include <arrays_strings/zero_matrix.h>
 #include <gtest/gtest.h>
 
 TEST( ZERO_MATRIX, THREE_SQUARE_SPARSE ) {

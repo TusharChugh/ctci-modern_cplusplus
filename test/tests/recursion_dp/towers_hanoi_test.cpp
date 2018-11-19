@@ -1,4 +1,4 @@
-#include "include/recursion_dp/towers_hanoi.h"
+#include <recursion_dp/towers_hanoi.h>
 #include <gtest/gtest.h>
 
 #include <iostream>

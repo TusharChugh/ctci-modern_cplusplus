@@ -1,4 +1,4 @@
-#include "include/trees_graphs/bst.h"
+#include <trees_graphs/bst.h>
 #include <gtest/gtest.h>
 
 TEST( BST, EMPTY_TEST ) {

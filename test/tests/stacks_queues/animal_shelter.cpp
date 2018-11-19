@@ -1,4 +1,4 @@
-#include "include/stacks_queues/animal_shelter.h"
+#include <stacks_queues/animal_shelter.h>
 #include <gtest/gtest.h>
 
 TEST( ANIMAL_SHELTER, POP_ORDER_BASED ) {

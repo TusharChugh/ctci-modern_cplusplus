@@ -1,6 +1,5 @@
-#include "include/arrays_strings/string_compression.h"
+#include <arrays_strings/string_compression.h>
 #include <gtest/gtest.h>
-#include <string>
 
 using algorithm::compress;
 

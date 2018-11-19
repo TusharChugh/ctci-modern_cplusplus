@@ -1,4 +1,4 @@
-#include "include/trees_graphs/validate_bst.h"
+#include <trees_graphs/validate_bst.h>
 #include <gtest/gtest.h>
 #include <limits>
 

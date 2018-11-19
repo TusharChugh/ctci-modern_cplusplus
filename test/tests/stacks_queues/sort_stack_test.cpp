@@ -1,4 +1,4 @@
-#include "include/stacks_queues/sort_stack.h"
+#include <stacks_queues/sort_stack.h>
 #include <gtest/gtest.h>
 #include <algorithm>
 #include <vector>

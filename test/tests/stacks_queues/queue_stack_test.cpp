@@ -1,4 +1,4 @@
-#include "include/stacks_queues/queue_stack.h"
+#include <stacks_queues/queue_stack.h>
 #include <gtest/gtest.h>
 
 TEST( QUEUE_STACK, SERIAL_PUSH_POP ) {

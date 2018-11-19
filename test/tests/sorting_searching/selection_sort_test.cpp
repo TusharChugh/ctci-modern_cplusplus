@@ -1,4 +1,4 @@
-#include "include/sorting_searching/selection_sort.h"
+#include <sorting_searching/selection_sort.h>
 #include <gtest/gtest.h>
 #include <stdlib.h>
 #include <algorithm>

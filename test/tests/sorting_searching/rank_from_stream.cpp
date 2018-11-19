@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/sorting_searching/rank_from_stream.h"
+#include <sorting_searching/rank_from_stream.h>
 
 TEST(RANK_FROM_STREAM, ) {
     algorithm::rank_stream rank_graph;

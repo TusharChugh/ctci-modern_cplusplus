@@ -1,4 +1,4 @@
-#include "include/linked_lists/remove_dups.h"
+#include <linked_lists/remove_dups.h>
 #include <gtest/gtest.h>
 
 using algorithm::Forward_List;

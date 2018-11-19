@@ -1,4 +1,4 @@
-#include "include/sorting_searching/peaks_valleys.h"
+#include <sorting_searching/peaks_valleys.h>
 #include <gtest/gtest.h>
 
 TEST( PEAKS_VALLEYS, DEMO ) {

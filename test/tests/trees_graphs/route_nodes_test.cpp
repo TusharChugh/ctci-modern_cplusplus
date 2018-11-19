@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "include/trees_graphs/adj_list_graph.h"
-#include "include/trees_graphs/route_nodes.h"
+#include <trees_graphs/adj_list_graph.h>
+#include <trees_graphs/route_nodes.h>
 
 TEST( ROUTE_NODES, DEMO ) {
     algorithm::adj_list_graph<true> input( 5 );

@@ -1,4 +1,4 @@
-#include "include/recursion_dp/eight_queen.h"
+#include <recursion_dp/eight_queen.h>
 #include <gtest/gtest.h>
 
 TEST( EIGHT_QUEEN, FOUR_CELLS ) {

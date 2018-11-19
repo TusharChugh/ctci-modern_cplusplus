@@ -1,5 +1,5 @@
-#include <include/gtest/gtest.h>
-#include "include/sorting_searching/binary_search.h"
+#include <gtest/gtest.h>
+#include <sorting_searching/binary_search.h>
 
 TEST(BINARY_SEARCH, FIVE_ELEMENTS) {
     std::vector<int> input = {1, 2, 4, 8, 10};

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/linked_lists/palindrome_list.h"
+#include <linked_lists/palindrome_list.h>
 
 using algorithm::is_palindrome_reverse;
 using algorithm::is_palindrome_stack;

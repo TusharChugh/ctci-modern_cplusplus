@@ -1,5 +1,5 @@
+#include <linked_lists/merge_sorted.h>
 #include <gtest/gtest.h>
-#include "include/linked_lists/merge_sorted.h"
 
 TEST(MERGE_SORTED, DEMO){
     auto list1 = make_list({5, 4, 1});

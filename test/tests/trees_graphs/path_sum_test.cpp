@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/trees_graphs/paths_sum.h"
+#include <trees_graphs/paths_sum.h>
 
 TEST( PATH_SUM, ZERO ) {
     algorithm::bst<int> tree = {10, 5, 13, 3, 2, 11, 3, -1, 1};

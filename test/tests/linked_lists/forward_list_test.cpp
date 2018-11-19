@@ -1,4 +1,4 @@
-#include "include/linked_lists/forward_list.h"
+#include <linked_lists/forward_list.h>
 #include <gtest/gtest.h>
 
 using Forward_List = algorithm::Forward_List<int>;

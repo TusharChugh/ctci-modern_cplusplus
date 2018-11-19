@@ -1,4 +1,4 @@
-#include "include/recursion_dp/power_set.h"
+#include <recursion_dp/power_set.h>
 #include <gtest/gtest.h>
 
 TEST( POWER_SET, EMPTY ) {

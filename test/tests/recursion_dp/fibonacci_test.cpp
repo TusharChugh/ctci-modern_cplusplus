@@ -1,4 +1,4 @@
-#include "include/recursion_dp/fibonacci.h"
+#include <recursion_dp/fibonacci.h>
 #include <gtest/gtest.h>
 
 using algorithm::fib_memoize_full;

@@ -1,4 +1,4 @@
-#include "include/stacks_queues/stack_plates.h"
+#include <stacks_queues/stack_plates.h>
 #include <gtest/gtest.h>
 
 TEST( STACK_PLATES, DEMO_TEST ) {

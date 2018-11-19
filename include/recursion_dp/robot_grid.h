@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <queue>
 #include <unordered_map>
-#include "include/trees_graphs/graph_grid.h"
+#include <trees_graphs/graph_grid.h>
 
 namespace algorithm {
 using point          = typename std::pair<size_t, size_t>;

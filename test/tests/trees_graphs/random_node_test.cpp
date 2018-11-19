@@ -1,4 +1,4 @@
-#include "include/trees_graphs/random_node.h"
+#include <trees_graphs/random_node.h>
 #include <gtest/gtest.h>
 
 TEST( RANDOM_NODE, DEMO ) {

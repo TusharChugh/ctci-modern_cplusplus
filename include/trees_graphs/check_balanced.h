@@ -11,7 +11,7 @@
 #pragma once
 
 #include <cmath>
-#include "include/trees_graphs/bst.h"
+#include <trees_graphs/bst.h>
 
 namespace algorithm {
 

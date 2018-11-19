@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/trees_graphs/list_depths.h"
+#include <trees_graphs/list_depths.h>
 
 TEST(LIST_DEPTH, FIVE_ELEMENTS) {
     algorithm::bst<int> input = {3, 2, 5, 4, 1};

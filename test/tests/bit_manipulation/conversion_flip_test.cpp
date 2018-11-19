@@ -1,4 +1,4 @@
-#include "include/bit_manipulation/conversion_flip.h"
+#include <bit_manipulation/conversion_flip.h>
 #include <gtest/gtest.h>
 
 TEST( CONVERSION_FLIP, DEMO ) {

@@ -1,6 +1,5 @@
-#include "include/arrays_strings/urlify.h"
+#include <arrays_strings/urlify.h>
 #include <gtest/gtest.h>
-#include <string>
 
 using algorithm::urlify;
 using algorithm::urlify_iterators;

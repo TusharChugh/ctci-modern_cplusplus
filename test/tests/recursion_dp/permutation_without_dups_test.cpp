@@ -1,4 +1,4 @@
-#include "include/recursion_dp/permutation_without_dups.h"
+#include <recursion_dp/permutation_without_dups.h>
 #include <gtest/gtest.h>
 
 #include <unordered_set>

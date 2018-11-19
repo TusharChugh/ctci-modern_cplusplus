@@ -1,4 +1,4 @@
-#include "include/trees_graphs/minimal_tree.h"
+#include <trees_graphs/minimal_tree.h>
 #include <gtest/gtest.h>
 
 TEST( MINIMAL_TREE, DEMO ) {

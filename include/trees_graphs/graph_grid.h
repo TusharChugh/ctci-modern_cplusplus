@@ -93,7 +93,7 @@ public:
     std::vector<cell_t> neighbors( cell_t cell,
                                    const std::vector<std::pair<int, int>>& directions ) const
         noexcept {
-        if ( !valid_loc( cell ) ) throw std::__throw_invalid_argument;
+        if ( !valid_loc( cell ) ) std::__throw_invalid_argument("cell location is not valid");
 
         std::vector<std::pair<size_t, size_t>> neighbors;
         for ( const auto& dir : directions ) {

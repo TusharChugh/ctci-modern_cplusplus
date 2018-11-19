@@ -1,4 +1,4 @@
-#include "include/sorting_searching/merge_sort.h"
+#include <sorting_searching/merge_sort.h>
 #include <gtest/gtest.h>
 
 TEST( MERGESORT, MERGESORT_TWO_UNSORTED_ELEMENTS_TRUE_Test ) {

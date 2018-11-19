@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include/sorting_searching/search_rotated.h"
+#include <sorting_searching/search_rotated.h>
 
 TEST(SEARCH_ROTATED, DEMO) {
     std::vector<int> input = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
